@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="ISO-8859-1">
+<title><%= title %></title>
+
+<!--     <link rel='stylesheet' href='/stylesheets/style.css' />  -->
+    <script	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<!--     <script src="angularjs/signup.js"></script> -->
+    
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+</head>
+<body ng-app="myApp" ng-controller="myCtrl" class="container">
+	<div class="container">
+    <div class="panel-group">
+    <div class="panel panel-default">
+      <div class="panel-heading">Signup</div>
+      <div class="panel-body">
+	
+	<div class="row">
+	<div class="col-lg-3"></div>
+	<div class="col-lg-12">
+		<form method="post" action="sell_scccess">
+		Title : <input type="text" name="item" ng-model="item" placeholder="Item you want to sell"> <br><br>
+		Details : <textarea ng-model="desc" class="form-control" rows="5"></textarea> <br><br>
+		Select pricing option : 
+		<select>
+			<option value="fixed" ng-model="price_option">Fixed Pricing</option>
+			<option value="auction" ng-model="price_option">Auction</option>		
+		</select> <br><br>
+		Price : <input type="number" name="price" ng-model="price" placeholder=""> <br><br>
+		Quantity : <input type="number" name="qty" ng-model="qty" value="1" min="1"> <br><br>
+		Listing duration : <input type="number" name="duration" ng-model="duration" value="1" min="1"> days <br><br>
+		Item location : <input type="text" name="location" ng-model="location" placeholder="Enter city name"> <br><br>
+		
+		<input type="submit" class="btn btn-success" ng-model="sell();" value="Click to Sell">
+	</div>
+	</div>
+	</div>
+    </div>
+
+</body>
+</html>
