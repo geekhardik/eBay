@@ -29,6 +29,7 @@ function fetchData(callback,sqlQuery,JSON_args){
 		}
 		else 
 		{	// return err or result
+			console.log(query.sql);
 			console.log("DB Results:"+rows);
 			callback(err, rows);
 		}

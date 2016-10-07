@@ -20,7 +20,7 @@ app.controller('sell',function($scope,$http){
 			}				
 		}).success(function(data){
 			if (data.statusCode == 401) {
-				
+				alert("somthing's wrong in callback of sell.js");
 			}
 			else
 				//Making a get call to the '/redirectToHomepage' API

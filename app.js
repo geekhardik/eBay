@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require('path');
+var session = require('client-sessions');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -19,6 +20,13 @@ app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
+app.use(session({   
+	  
+	cookieName: 'session',    
+	secret: 'eBay_user',    
+	duration: 30 * 60 * 1000,    //setting the time for active session
+	activeDuration: 5 * 60 * 1000,  })); // setting time for the session to be active when the window is open // 5 minutes set currently
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -33,7 +41,7 @@ app.use('/users', users);
 //copied area
 //app.get('/signin', home.signin);
 //app.post('/signup',home.signup);
-app.post('/afterSignIn', home.afterSignIn);
+//app.post('/afterSignIn', home.afterSignIn);
 app.get('/getAllUsers', home.getAllUsers);
 //till here
 

@@ -32,17 +32,17 @@ var mysql = require('./mysql');
    });
 }*/
 
-function afterSignIn(req,res)
+/*function afterSignIn(req,res)
 {
 	// check user already exists
-	var getUser="select * from users where username='"+req.param("inputUsername")+"' and password='" + req.param("inputPassword") +"'";
+//	var getUser="select * from users where username='"+req.param("inputUsername")+"' and password='" + req.param("inputPassword") +"'";
 	
-//	var getUser="select * from users where ?";
+	var getUser="select * from users where username=? and password = ?";
 	
-		var JSON_args = {
-			"username": req.body.inputUsername,
-			"password":req.body.inputPassword			
-		};
+		
+			var username =  req.body.inputUsername;
+			var password = req.body.inputPassword;			
+		
 //		
 //	console.log("Query is:"+getUser);
 	
@@ -82,8 +82,8 @@ function afterSignIn(req,res)
 			    });
 			}
 		}  
-	},getUser);
-}
+	},getUser,[usernmae,password]);
+}*/
 
 function getAllUsers(req,res)
 {
@@ -145,5 +145,5 @@ function getAllUsers(req,res)
 
 //exports.signin=signin;
 //exports.signin=signup;
-exports.afterSignIn=afterSignIn;
+//exports.afterSignIn=afterSignIn;
 exports.getAllUsers=getAllUsers;
