@@ -44,7 +44,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><input type=""</li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><span  class="btn" ng-click="signcheck()">{{sign}}</span></li>
       </ul>
     </div>
   </div>
@@ -53,9 +53,20 @@
 
   
 <div class="container">
-  <h1>Hi <%= username %> are welcome to eBay homepage..</h1>
-  <input type="submit" class="btn " ng-click="logout()" value="Log Out">
-</div>
+  <h1>Hi <%= username %>! Welcome to eBay homepage..</h1>
+ </div>
+
+
+<div class = "page" ng-controller="cataLouge" style="margin:20px;">
+		<div class="row">					
+					<div class="col-lg-4" ng-repeat="x in list" style="border:1px solid">
+						<h1 class="bg-primary text-center ">{{x.item}}</h1>
+						<img src="images/watch.jpg" class="img-rounded" alt="watch" width="304" height="236">
+						<h2 class="text-center">Item price : {{x.price | currency}}</h2>					
+					</div>					
+		</div>	
+</div>	
+
 
 </body>
 </html>

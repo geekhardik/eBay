@@ -18,6 +18,40 @@ router.get('/home', function(req, res, next) {
 	}
 });
 
+router.post('/home', function(req, res, next) {
+	
+	if(req.session.user){
+	res.send({entry : "signout"});
+	}
+	else{
+		res.send({entry : "signin"});
+	}
+});
+
+
+router.post('/cataLouge', function(req, res, next) {
+	console.log("in CataLouge");
+		
+	//let's get sell items info from table sell into DB
+	var query = "select * from sell";
+	mysql.fetchData(function(err, results) {
+		if (err) {
+			throw err;
+		} else {
+			if (results.length > 0) {
+//				console.log("items exists in catalouge");
+//				console.log(results);
+				res.send({list : results});
+						
+			} else {
+				console.log("no entries found in DB!");
+			}
+		}
+	}, query);
+	
+});
+
+
 router.get('/signup', function(req, res, next) {
 	res.render('signup', {title : 'Signup'});
 });
@@ -25,23 +59,9 @@ router.get('/signup', function(req, res, next) {
 router.get('/signin', function(req, res, next) {
 	
 	if(req.session.user){
-//		console.log("captured session and hence rerouting to homepage instead signin");
-//		console.log("session details : "+req.session.user.username);
 		res.render('home',{"username" : req.session.user.username});
 	}
 	else{	
-//		ejs.renderFile('./views/signin.ejs', function(err, result) {
-//		// render on success
-//		if (!err) {
-//
-//			res.end(result);
-//		}
-//		// render or error
-//		else {
-//			res.end('An error occurred');
-//			console.log(err);
-//		}
-//	});
 		console.log("redirecting to signin..");
 		res.render('signin');
 		
@@ -63,7 +83,6 @@ router.post('/afterSignIn', function(req, res, next) {
 
 	var getUser = "select * from users where username=? and password = ?";
 
-	//		
 	// console.log("Query is:"+getUser);
 
 	mysql.fetchData(function(err, results) {

@@ -16,10 +16,7 @@ function getConnection(){
 
 function fetchData(callback,sqlQuery,JSON_args){
 	
-	
-//	sqlQuery = sqlQuery + "VALUES" + JSON_args;
-//	console.log("\nSQL Query::"+sqlQuery);
-	
+
 	var connection=getConnection();
 	
 	var query = connection.query(sqlQuery,JSON_args, function(err, rows, fields) {
@@ -29,8 +26,7 @@ function fetchData(callback,sqlQuery,JSON_args){
 		}
 		else 
 		{	// return err or result
-			console.log(query.sql);
-			console.log("DB Results:"+rows);
+//			console.log(rows);
 			callback(err, rows);
 		}
 		
