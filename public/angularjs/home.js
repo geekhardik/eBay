@@ -13,20 +13,7 @@ app.controller('home',function($scope,$http){
 		}else{
 			alert("somthing's wrong in callback of home.js");
 		}
-	});
-	
-//	$http({			
-//		method: "POST",
-//		url : '/catalouge',
-//					
-//	}).success(function(data){
-//		if(data.list.length){
-//			$scope.list= data.list;
-//			
-//		}else{
-//			alert("somthing's wrong in callback of catalouge.js");
-//		}
-//	});
+	});	
 	
 	
 $scope.signcheck = function(){
@@ -75,6 +62,7 @@ app.controller('cataLouge',function($scope,$http){
 		}
 	});
 	
+
 });
 
 

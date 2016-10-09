@@ -26,7 +26,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">WebSiteName</a>
+      <img src="images/ebay.png" class="img-rounded" alt="ebay" width="80" height="50">
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -43,7 +43,6 @@
         <li><a href="#">Page 3</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><input type=""</li>
         <li><span  class="btn" ng-click="signcheck()">{{sign}}</span></li>
       </ul>
     </div>
@@ -60,9 +59,11 @@
 <div class = "page" ng-controller="cataLouge" style="margin:20px;">
 		<div class="row">					
 					<div class="col-lg-4" ng-repeat="x in list" style="border:1px solid">
-						<h1 class="bg-primary text-center ">{{x.item}}</h1>
-						<img src="images/watch.jpg" class="img-rounded" alt="watch" width="304" height="236">
-						<h2 class="text-center">Item price : {{x.price | currency}}</h2>					
+						
+						<h1><a href="/item?id={{x.id}}" >{{x.item}}</a></h1>						
+						<a href="/item?id={{x.id}}"><img src="images/watch.jpg" class="img-rounded" alt="watch" width="304" height="236"></a>
+						<h2 class="text-center">Item price : {{x.price | currency}}</h2>
+										
 					</div>					
 		</div>	
 </div>	

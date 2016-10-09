@@ -8,6 +8,10 @@ router.get('/', function(req, res, next) {
 	res.render('signin');
 });
 
+router.get('/cart', function(req, res, next) {
+	res.render('cart');
+});
+
 router.get('/home', function(req, res, next) {
 	console.log("inside home");
 	if(req.session.user){
@@ -29,18 +33,146 @@ router.post('/home', function(req, res, next) {
 });
 
 
+router.post('/getCart', function(req, res, next) {
+	console.log("in getcart!");
+	var query = "select ebay.sell.item,ebay.cart.qty,ebay.sell.price from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.id = ebay.cart.id and ebay.cart.user_id ='"+req.session.user.user_id+"'";
+	var total_price = 0;
+	mysql.fetchData(function(err, results) {
+		if (err) {
+			throw err;
+		} else {
+			if (results.length > 0) {
+				console.log("successful retirval of cart");
+				
+				for(var i=0;i<results.length;i++){
+					total_price += (Number(results[i].price)*Number(results[i].qty));						
+				}				
+				
+				JSON_obj = {
+						"cart" : results,
+						"price" : total_price
+				}
+				
+				res.send(JSON_obj);							
+			} else {
+				console.log("no entries found in DB!");
+			}
+		}
+	},query); 
+	
+});
+
+
+
+
+router.post('/cart', function(req, res, next) {
+	
+// var cart_items = [];
+	
+	if(req.session.user){	
+		
+		var cart_item = req.body.obj;
+		var qty = req.body.qty;
+		var user = req.session.user.user_id;
+		console.log("username in cart is "+req.session.user.username);
+	
+		
+		var query = "select * from cart where cart.id = '"+cart_item.id+"'";
+		
+		mysql.fetchData(function(err, results) {
+			if (err) {
+				throw err;
+			} else {
+				
+				if (results.length > 0) {
+					console.log("already exist!");
+					var current_qty = results[0].qty;
+					new_qty = qty + current_qty
+					var query = "update cart SET cart.qty ='"+ new_qty+"' where cart.id = '"+cart_item.id+"'";
+					
+					mysql.fetchData(function(err, answer) {
+						if (err) {
+							throw err;
+						} else {
+							if (answer.length == null) {
+								console.log("qty updated to cart");	
+								res.send({success : 200});
+							}else{
+								console.log("no records!");
+							} 
+						}
+					}, query); 			
+			
+				} else {
+					console.log("no entries found in DB!");
+					var query = "INSERT INTO cart SET ?	";
+					
+					var JSON_query = {
+							"id" : cart_item.id,
+							"item" : cart_item.item,
+							"qty" : qty,
+							"user_id" : user,
+							"seller_name" : cart_item.seller				
+						};
+					
+					mysql.fetchData(function(err, results) {
+						if (err) {
+							throw err;
+						} else {
+							if (results.affectedRows === 1) {
+								console.log("added to cart");	
+								res.send({success : 200});
+							} 
+						}
+					}, query,JSON_query); 
+				}
+			}
+		}, query); 		
+		
+							
+	}else{		
+		res.send({success : 401});
+	}
+});
+
+
+router.get('/item', function(req, res, next) {
+	res.render('item');	
+	
+});
+
+router.post('/item', function(req, res, next) {
+	
+	var id = req.body.id;
+	var query = "select * from sell where id=?";
+	mysql.fetchData(function(err, results) {
+		if (err) {
+			throw err;
+		} else {
+			if (results.length > 0) {
+				res.send({list : results});
+						
+			} else {
+				console.log("no entries found in DB!");
+			}
+		}
+	}, query,id);
+});
+
+
+
 router.post('/cataLouge', function(req, res, next) {
 	console.log("in CataLouge");
 		
-	//let's get sell items info from table sell into DB
+	// let's get sell items info from table sell into DB
 	var query = "select * from sell";
 	mysql.fetchData(function(err, results) {
 		if (err) {
 			throw err;
 		} else {
 			if (results.length > 0) {
-//				console.log("items exists in catalouge");
-//				console.log(results);
+// console.log("items exists in catalouge");
+// console.log(results);
 				res.send({list : results});
 						
 			} else {
@@ -96,11 +228,10 @@ router.post('/afterSignIn', function(req, res, next) {
 				console.log("making session..");
 
 				req.session.user = {
-					"username" : username,
-					"password" : password
-				};
-				console.log(username);
-	
+						"user_id" : results[0].user_id,
+						"username" : username
+				};				
+				console.log("user_id is : " + req.session.user.user_id);	
 			res.send({"statusCode" : 200});	
 			} else {
 
