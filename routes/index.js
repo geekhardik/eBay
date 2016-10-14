@@ -45,7 +45,8 @@ router.post('/getCart', function(req, res, next) {
 				console.log("successful retirval of cart");
 				
 				for(var i=0;i<results.length;i++){
-					total_price += (Number(results[i].price)*Number(results[i].qty));						
+					total_price += (Number(results[i].price)*Number(results[i].qty));	
+					
 				}				
 				
 				JSON_obj = {
@@ -77,7 +78,7 @@ router.post('/cart', function(req, res, next) {
 		console.log("username in cart is "+req.session.user.username);
 	
 		
-		var query = "select * from cart where cart.id = '"+cart_item.id+"'";
+		var query = "select * from cart where cart.id = '"+cart_item.id+"' and cart.user_id = '"+req.session.user.user_id+"'";
 		
 		mysql.fetchData(function(err, results) {
 			if (err) {
