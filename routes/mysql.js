@@ -1,5 +1,6 @@
 var ejs= require('ejs');
 var mysql = require('mysql');
+//var pool = require('mysql').createPool(opts);
 
 //Put your mysql configuration settings - user, password, database and port
 function getConnection(){
@@ -13,13 +14,33 @@ function getConnection(){
 	return connection;
 }
 
+//connection pooling
+
+function Pool(num_conns)
+{
+    this.pool = [];
+    for(var i=0; i < num_conns; ++i)
+        this.pool.push(getConnection()); // your new Client + auth
+    this.last = 0;
+}
+
+Pool.prototype.get = function()
+{
+    var cli = this.pool[this.last];
+    this.last++;
+    if (this.last == this.pool.length) // cyclic increment
+       this.last = 0;
+    return cli;
+}
+
+var p = new Pool(100);
 
 function fetchData(callback,sqlQuery,JSON_args){
 	
 
 	var connection=getConnection();
 	
-	var query = connection.query(sqlQuery,JSON_args, function(err, rows, fields) {
+	var query = p.get().query(sqlQuery,JSON_args, function(err, rows, fields) {
 		if(err){
 			
 			console.log("ERROR: " + err.message);

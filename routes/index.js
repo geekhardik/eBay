@@ -4,6 +4,8 @@ var mysql = require('./mysql');
 var ejs = require("ejs");
 var check = require('./cc_check');
 var uuid = require('node-uuid');
+var crypto = require('crypto');
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -347,7 +349,7 @@ router.post('/afterSignIn', function(req, res, next) {
 	var username = req.body.inputUsername;
 	var password = req.body.inputPassword;
 
-	var getUser = "select * from users where username=? and password = ?";
+	var getUser = "select * from users where username=?";
 
 	// console.log("Query is:"+getUser);
 
@@ -357,23 +359,54 @@ router.post('/afterSignIn', function(req, res, next) {
 		} else {
 			if (results.length > 0) {
 				
-				console.log("result of DB is : "+ results);
-				console.log("valid Login");
-				console.log("making session..");
-
-				req.session.user = {
-						"user_id" : results[0].user_id,
-						"username" : username
-				};				
-				console.log("user_id is : " + req.session.user.user_id);	
-			res.send({"statusCode" : 200});	
+				console.log(results);
+				
+				//get salt and hash it with password and check if two passwords are same or not!
+				
+				var get_salt = results[0].salt;
+				var get_password = results[0].password;
+				
+				var sha512 = function(password, salt){
+				    var hash = crypto.createHmac('sha512', salt); /** Hashing algorithm sha512 */
+				    hash.update(password);
+				    var value = hash.digest('hex');
+				    return {
+				        salt:salt,
+				        passwordHash:value
+				    };
+				};
+				
+				var hashed_pass;				
+				function saltHashPassword(userpassword) {
+				    var salt = get_salt; /** Gives us salt of length 16 */
+				    var passwordData = sha512(userpassword, salt);
+				    hashed_pass = passwordData.passwordHash;				    
+				}				
+				
+				saltHashPassword(password);
+				
+				if(hashed_pass === get_password){
+					console.log("user is valid");
+					//since user is valid. let's make his session!
+					res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+					req.session.user = {
+							"user_id" : results[0].user_id,
+							"username" : username
+					};
+					console.log("user_id is : " + req.session.user.user_id);	
+					res.send({"statusCode" : 200});	
+				
+				}else{
+				console.log("Invalid Login");
+				res.send({"statusCode" : 401});
+				}
 			} else {
 
 				console.log("Invalid Login");
 				res.send({"statusCode" : 401});	
 			}
 		}
-	}, getUser, [ username, password ]);
+	}, getUser, [username]);
 });
 
 router.get('/sell', function(req, res, next) {
@@ -438,7 +471,41 @@ router.post('/signup_scccess', function(req, res, next) {
 	var get_password = req.body.password;
 
 	// console.log(firstname + " " + lastname + " "+ username+ " "+ password);
+	
+	//password salt hash
 
+	var genRandomString = function(length){
+	    return crypto.randomBytes(Math.ceil(length/2))
+	            .toString('hex') /** convert to hexadecimal format */
+	            .slice(0,length);   /** return required number of characters */
+	};
+
+	var sha512 = function(password, salt){
+	    var hash = crypto.createHmac('sha512', salt); /** Hashing algorithm sha512 */
+	    hash.update(password);
+	    var value = hash.digest('hex');
+	    return {
+	        salt:salt,
+	        passwordHash:value
+	    };
+	};
+	
+	var hashed_pass;
+	var get_salt="";
+	
+	function saltHashPassword(userpassword) {
+	    var salt = genRandomString(16); /** Gives us salt of length 16 */
+	    var passwordData = sha512(userpassword, salt);
+//	    console.log('UserPassword = '+userpassword);
+//	    console.log('Passwordhash = '+passwordData.passwordHash);
+//	    console.log('\nSalt = '+passwordData.salt);
+	    hashed_pass = passwordData.passwordHash;
+	    get_salt = salt;
+	}
+
+	
+	saltHashPassword(get_password);
+	
 	var query_string = "INSERT INTO users SET ?";
 
 	var JSON_query = {
@@ -446,7 +513,8 @@ router.post('/signup_scccess', function(req, res, next) {
 		"firstname" : first_name,
 		"lastname" : last_name,
 		"username" : user_name,
-		"password" : get_password
+		"password" : hashed_pass,
+		"salt" : get_salt
 	};
 
 	// insert signup data into DB
