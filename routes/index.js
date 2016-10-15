@@ -301,7 +301,11 @@ router.post('/cataLouge', function(req, res, next) {
 	console.log("in CataLouge");
 		
 	// let's get sell items info from table sell into DB
-	var query = "select * from sell";
+	if(req.session.user){
+	var query = "select * from sell where not seller_id ='"+ req.session.user.user_id+"'";
+	}else{
+		var query = "select * from sell";
+	}
 	mysql.fetchData(function(err, results) {
 		if (err) {
 			throw err;
@@ -517,18 +521,24 @@ router.post('/signup_scccess', function(req, res, next) {
 		"salt" : get_salt
 	};
 
+	var statusCode = 0;
 	// insert signup data into DB
 	mysql.fetchData(function(err, results) {
 		if (err) {
+			statusCode = 10;
 			throw err;
+			
 		} else {
 			if (results.affectedRows === 1) {
 				console.log("signup successful");
-				res.redirect('signin');
+//				res.redirect('signin');
+				statusCode = 200;
 			} else {
 				console.log("didn't insert the query!");
+				statusCode = 401;
 			}
 		}
+		res.send({"statusCode" : statusCode});
 	}, query_string, JSON_query);
 
 });
