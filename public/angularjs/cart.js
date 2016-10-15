@@ -16,23 +16,27 @@ app.controller('cart',function($scope,$http){
 		}
 	});	
 };
+
+	$scope.home = function(){
+		window.location.assign('home');
+	}
 	$scope.checkout = function(){	
 		
 		$http({			
 			method: "POST",
-			url : '/checkout',
-			data : {
+			url : '/gotoCheckout',
+			/*data : {
 				
-			}
+			}*/
 						
-		}).success(function(data){
+		})
+		.success(function(data){
 			if (data.success == 200) {
-				
+				window.location.assign('checkout');
 							
 			}else{
-				alert("Please sign-in first!");
-				window.location.assign('signin');
-				
+				alert("something is wrong in checking out!!");
+						
 			}
 		});
 	}

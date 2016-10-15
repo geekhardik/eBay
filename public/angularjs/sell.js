@@ -20,12 +20,13 @@ app.controller('sell',function($scope,$http){
 			}				
 		}).success(function(data){
 			if (data.statusCode == 401) {
-				alert("somthing's wrong in callback of sell.js");
+				alert("Pelase signin first");
+				window.location.assign("/signin");
 			}
 			else
 				//Making a get call to the '/redirectToHomepage' API
 				alert("Item listing on sell is successful!");
-				window.location.assign("/aftersignin");
+				window.location.assign("/home");
 			
 		}).error(function(error){
 			console.log(data.msg);

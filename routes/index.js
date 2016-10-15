@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('./mysql');
 var ejs = require("ejs");
+var check = require('./cc_check');
+var uuid = require('node-uuid');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -9,8 +11,138 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/cart', function(req, res, next) {
-	res.render('cart');
+	
+	if(req.session.user){
+		res.render('cart');
+		}
+		else{
+			res.redirect('signin');
+		}	
 });
+
+router.post('/gotoCheckout', function(req, res, next) {
+	res.send({success : 200});
+//	res.render('checkout');
+});
+
+router.get('/checkout', function(req, res, next) {
+	if(req.session.user){
+		res.render('checkout');
+		}
+		else{
+			res.redirect('signin');
+		}
+});
+
+
+router.post('/boughtPage', function(req, res, next) {
+	
+	var cc = req.body.cc;
+	var exp_month = req.body.exp_month;
+	var exp_year = req.body.exp_year;
+	var cvv = req.body.cvv;
+	
+	var checkout_cart = [];
+	checkout_cart = req.body.cart;
+	var cart_total = req.body.total;
+	
+	var size = 0,i=0,count=0,qty=0,cart_item= 0;
+	var new_qty = 0;
+	
+	for (var x in checkout_cart){
+		size++;
+	}
+	console.log(checkout_cart);
+	
+//	console.log(cc + " " + exp_month + " "+ exp_year + " "+ cvv);
+	
+//	check.Tocheck(cc,exp_month, exp_year,cvv,function(answer,message){
+		
+			
+//		if(answer){	
+			var transection_id = uuid.v1();
+			console.log("CC check is OK");
+			
+			//insert into transection databases		
+			var query = "INSERT INTO transection SET ?";
+			
+			var JSON_query = {
+					"total" : cart_total,
+					"user_id" : req.session.user.user_id,	
+					"id" : transection_id
+			};
+			
+			mysql.fetchData(function(err, results) {
+				if (err) {
+					throw err;
+				} else {
+					if (results.affectedRows === 1) {
+						console.log("added to transection cart");	
+//						
+					} 
+				}
+			}, query,JSON_query); 
+			
+			//insert detailed item lists into bought_detail table
+			
+			for (i=0;i<size;i++){
+			
+				var query = "INSERT INTO order_details SET ?";
+				
+				var JSON_query = {
+						"seller_id" : checkout_cart[i].seller_id,
+						"item" : checkout_cart[i].item,	
+						"transection_id" : transection_id,
+						"qty" : checkout_cart[i].qty					
+				};
+				
+				mysql.fetchData(function(err, results) {
+					if (err) {
+						throw err;
+					} else {
+						if (results.affectedRows === 1) {
+							
+							console.log("added to order_details cart");	
+							console.log("i : "+i+" "+count);
+							//update qty in sell table
+							qty = checkout_cart[count].qty;
+							cart_item = checkout_cart[count++].item_id;
+							var query = "UPDATE sell SET ebay.sell.qty = ebay.sell.qty -"+qty +" where item_id = '"+cart_item+"'";
+							
+							mysql.fetchData(function(err, results) {
+								if (err) {
+									throw err;
+								} else {
+									if (results.affectedRows === 1) {							
+										
+										console.log("qty updated in sell table");									
+																				
+									} else{
+										console.log("not inside loop");
+									}
+								}
+							}, query); 
+						} 
+					}
+				}, query,JSON_query); 				
+							
+			}	
+				
+		//delete the user cart!
+			var query = "DELETE from cart where user_id = '"+req.session.user.user_id+"'";
+			
+			mysql.fetchData(function(err, results) {
+				if (err) {
+					throw err;
+				} else {
+					if (results.affectedRows === 1) {
+						console.log("added to transection cart");						
+					} 
+				}
+			}, query); 
+	
+});
+
 
 router.get('/home', function(req, res, next) {
 	console.log("inside home");
@@ -35,7 +167,7 @@ router.post('/home', function(req, res, next) {
 
 router.post('/getCart', function(req, res, next) {
 	console.log("in getcart!");
-	var query = "select ebay.sell.item,ebay.cart.qty,ebay.sell.price from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.id = ebay.cart.id and ebay.cart.user_id ='"+req.session.user.user_id+"'";
+	var query = "select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='"+req.session.user.user_id+"'";
 	var total_price = 0;
 	mysql.fetchData(function(err, results) {
 		if (err) {
@@ -76,9 +208,9 @@ router.post('/cart', function(req, res, next) {
 		var qty = req.body.qty;
 		var user = req.session.user.user_id;
 		console.log("username in cart is "+req.session.user.username);
-	
+		console.log("item in cart is "+cart_item.item_id);
 		
-		var query = "select * from cart where cart.id = '"+cart_item.id+"' and cart.user_id = '"+req.session.user.user_id+"'";
+		var query = "select * from cart where cart.id = '"+cart_item.item_id+"' and cart.user_id = '"+req.session.user.user_id+"'";
 		
 		mysql.fetchData(function(err, results) {
 			if (err) {
@@ -88,8 +220,8 @@ router.post('/cart', function(req, res, next) {
 				if (results.length > 0) {
 					console.log("already exist!");
 					var current_qty = results[0].qty;
-					new_qty = qty + current_qty
-					var query = "update cart SET cart.qty ='"+ new_qty+"' where cart.id = '"+cart_item.id+"'";
+					var new_qty = qty + current_qty;
+					var query = "update cart SET cart.qty ='"+ new_qty+"' where cart.id = '"+cart_item.item_id+"'";
 					
 					mysql.fetchData(function(err, answer) {
 						if (err) {
@@ -109,11 +241,12 @@ router.post('/cart', function(req, res, next) {
 					var query = "INSERT INTO cart SET ?	";
 					
 					var JSON_query = {
-							"id" : cart_item.id,
+							"id" : cart_item.item_id,
 							"item" : cart_item.item,
 							"qty" : qty,
 							"user_id" : user,
-							"seller_name" : cart_item.seller				
+							"seller_name" : cart_item.seller,
+							"seller_id" : cart_item.seller_id
 						};
 					
 					mysql.fetchData(function(err, results) {
@@ -145,7 +278,7 @@ router.get('/item', function(req, res, next) {
 router.post('/item', function(req, res, next) {
 	
 	var id = req.body.id;
-	var query = "select * from sell where id=?";
+	var query = "select * from sell where item_id=?";
 	mysql.fetchData(function(err, results) {
 		if (err) {
 			throw err;
@@ -250,12 +383,15 @@ router.get('/sell', function(req, res, next) {
 });
 
 router.post('/sell', function(req, res, next) {
-	console.log("inside sell");
+	console.log("inside sell")
+	if(req.session.user){
+	
 	var JSON_query = {
 
 		"item" : req.body.item,
 		"desc" : req.body.desc,
-		"seller" : "hardik",
+		"seller" : req.session.user.username,
+		"seller_id" : req.session.user.user_id,
 		"price_option" : req.body.price_option,
 		"price" : req.body.price,
 		"qty" : req.body.qty,
@@ -284,6 +420,13 @@ router.post('/sell', function(req, res, next) {
 			}
 		}
 	}, query_string, JSON_query);
+	
+	}else{
+		json_responses = {
+				"statusCode" : 401
+			};
+			res.send(json_responses);
+	}
 
 });
 
