@@ -1,0 +1,16 @@
+{"level":"info","message":"inside /sell get","timestamp":"2016-10-16T18:27:03.995Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T18:27:04.400Z"}
+{"level":"info","message":"inside /sell get","timestamp":"2016-10-16T18:27:06.107Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T18:27:06.364Z"}
+{"level":"info","message":"inside /sell get","timestamp":"2016-10-16T18:29:14.481Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T18:29:14.837Z"}
+{"level":"info","message":"inside /sell get","timestamp":"2016-10-16T18:29:24.180Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T18:29:24.467Z"}
+{"level":"info","message":"inside /sell get","timestamp":"2016-10-16T18:29:24.924Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T18:29:25.137Z"}
+{"level":"info","message":"inside /sell get","timestamp":"2016-10-16T18:29:25.265Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T18:29:25.428Z"}
+{"level":"info","message":"inside /sell get","timestamp":"2016-10-16T18:29:36.225Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T18:29:36.473Z"}
+{"level":"info","message":"inside /logout post","timestamp":"2016-10-16T18:30:52.552Z"}
+{"level":"info","message":"inside /signin get","timestamp":"2016-10-16T18:30:54.019Z"}

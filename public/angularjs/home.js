@@ -9,7 +9,10 @@ app.controller('home',function($scope,$http){
 					
 	}).success(function(data){
 		if (data.entry) {
+			
 			$scope.sign = data.entry;
+			$scope.username = data.name;	
+			
 		}else{
 			alert("somthing's wrong in callback of home.js");
 		}

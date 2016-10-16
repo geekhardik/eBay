@@ -59,9 +59,39 @@ $(document).ready(function() {
 
 
 
-<body ng-app="myApp" ng-controller="profile" class="container-fluid" ng-init="getprofile();">
+<body ng-app="myApp" ng-controller="profile" class="container" ng-init="getprofile();">
 
-
+<div  class="main" class="container-fluid" >
+<nav class="navbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <img src="images/ebay.png" class="img-rounded" alt="ebay" width="80" height="50">
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/home">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="/profile">{{username}}<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/profile">Buy / Sell History</a></li>
+          </ul>
+        </li>
+        <li><a href="/cart">cart</a></li>
+        <li><a href="/sell">Sell</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><span  class="btn" ng-click="signcheck()">{{sign}}</span></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</div>
 
 
 <br><br>
@@ -105,7 +135,7 @@ $(document).ready(function() {
                                     <dt>eBay Handle : </dt>
                                     <dd>{{handle}}</dd>
                                     <dt>Registered since:</dt>
-                                    <dd>{{date}}</dd>
+                                    <dd>{{date | date}}</dd>
                                     <dt>contact : </dt>
                                     <dd>{{contact}}</dd>
                                     <dt>Location : </dt>
@@ -122,7 +152,7 @@ $(document).ready(function() {
                                     </tr>
                                     <tr>
                                         <td>Registered since:</td>
-                                        <td>{{date}}</td>
+                                        <td>{{date | date}}</td>
                                     </tr>
                                     <tr>
                                         <td>contact :</td>

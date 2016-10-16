@@ -252,10 +252,18 @@ router.get('/home', function(req, res, next) {
 router.post('/home', function(req, res, next) {
 	logger.log('info','inside /home post method!');
 	if(req.session.user){
-	res.send({entry : "signout"});
+		var JSON_obj = {
+				"entry" : "signout",
+				"name" : req.session.user.username
+		}
+	res.send(JSON_obj);
 	}
 	else{
-		res.send({entry : "signin"});
+		var JSON_obj = {
+				"entry" : "signin",
+				"name" : "Guest"
+		};
+		res.send(JSON_obj);
 	}
 });
 

@@ -1,0 +1,76 @@
+{"level":"info","message":"getcart query was failed","timestamp":"2016-10-16T18:18:41.574Z"}
+{"level":"info","message":"inside cart page get method!","timestamp":"2016-10-16T18:18:42.762Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T18:18:43.248Z"}
+{"level":"info","message":"inside /getCart post method!","timestamp":"2016-10-16T18:18:43.255Z"}
+{"level":"info","message":"select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='44'","timestamp":"2016-10-16T18:18:43.257Z"}
+{"level":"info","message":"getcart query was failed","timestamp":"2016-10-16T18:18:43.258Z"}
+{"level":"info","message":"inside cart page get method!","timestamp":"2016-10-16T18:19:28.757Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T18:19:29.229Z"}
+{"level":"info","message":"inside /getCart post method!","timestamp":"2016-10-16T18:19:29.236Z"}
+{"level":"info","message":"select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='44'","timestamp":"2016-10-16T18:19:29.238Z"}
+{"level":"info","message":"getcart query was failed","timestamp":"2016-10-16T18:19:29.239Z"}
+{"level":"info","message":"inside cart page get method!","timestamp":"2016-10-16T18:19:40.053Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T18:19:40.524Z"}
+{"level":"info","message":"inside /getCart post method!","timestamp":"2016-10-16T18:19:40.536Z"}
+{"level":"info","message":"select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='44'","timestamp":"2016-10-16T18:19:40.537Z"}
+{"level":"info","message":"getcart query was failed","timestamp":"2016-10-16T18:19:40.541Z"}
+{"level":"info","message":"inside cart page get method!","timestamp":"2016-10-16T18:19:54.905Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T18:19:55.385Z"}
+{"level":"info","message":"inside /getCart post method!","timestamp":"2016-10-16T18:19:55.392Z"}
+{"level":"info","message":"select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='44'","timestamp":"2016-10-16T18:19:55.393Z"}
+{"level":"info","message":"getcart query was failed","timestamp":"2016-10-16T18:19:55.393Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-16T18:21:02.547Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T18:21:03.277Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-16T18:21:03.285Z"}
+{"level":"info","message":"select * from sell where not seller_id ='44'","timestamp":"2016-10-16T18:21:03.286Z"}
+{"level":"info","message":"cataLouge is empty","timestamp":"2016-10-16T18:21:03.288Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-16T18:22:05.071Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T18:22:05.393Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-16T18:22:05.400Z"}
+{"level":"info","message":"select * from sell where not seller_id ='44'","timestamp":"2016-10-16T18:22:05.407Z"}
+{"level":"info","message":"cataLouge is empty","timestamp":"2016-10-16T18:22:05.412Z"}
+{"level":"info","message":"inside cart page get method!","timestamp":"2016-10-16T18:22:06.887Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T18:22:07.097Z"}
+{"level":"info","message":"inside /getCart post method!","timestamp":"2016-10-16T18:22:07.106Z"}
+{"level":"info","message":"select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='44'","timestamp":"2016-10-16T18:22:07.108Z"}
+{"level":"info","message":"getcart query was failed","timestamp":"2016-10-16T18:22:07.109Z"}
+{"level":"info","message":"inside cart page get method!","timestamp":"2016-10-16T18:22:07.842Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T18:22:08.170Z"}
+{"level":"info","message":"inside /getCart post method!","timestamp":"2016-10-16T18:22:08.177Z"}
+{"level":"info","message":"select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='44'","timestamp":"2016-10-16T18:22:08.188Z"}
+{"level":"info","message":"getcart query was failed","timestamp":"2016-10-16T18:22:08.214Z"}
+{"level":"info","message":"inside cart page get method!","timestamp":"2016-10-16T18:22:41.082Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T18:22:41.628Z"}
+{"level":"info","message":"inside /getCart post method!","timestamp":"2016-10-16T18:22:41.637Z"}
+{"level":"info","message":"select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='44'","timestamp":"2016-10-16T18:22:41.638Z"}
+{"level":"info","message":"getcart query was failed","timestamp":"2016-10-16T18:22:41.639Z"}
+{"level":"info","message":"inside cart page get method!","timestamp":"2016-10-16T18:23:01.002Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T18:23:01.433Z"}
+{"level":"info","message":"inside /getCart post method!","timestamp":"2016-10-16T18:23:01.439Z"}
+{"level":"info","message":"select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='44'","timestamp":"2016-10-16T18:23:01.441Z"}
+{"level":"info","message":"getcart query was failed","timestamp":"2016-10-16T18:23:01.442Z"}
+{"level":"info","message":"inside cart page get method!","timestamp":"2016-10-16T18:23:35.751Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T18:23:36.038Z"}
+{"level":"info","message":"inside /getCart post method!","timestamp":"2016-10-16T18:23:36.046Z"}
+{"level":"info","message":"select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='44'","timestamp":"2016-10-16T18:23:36.048Z"}
+{"level":"info","message":"getcart query was failed","timestamp":"2016-10-16T18:23:36.052Z"}
+{"level":"info","message":"inside cart page get method!","timestamp":"2016-10-16T18:23:48.309Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T18:23:48.503Z"}
+{"level":"info","message":"inside /getCart post method!","timestamp":"2016-10-16T18:23:48.510Z"}
+{"level":"info","message":"select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='44'","timestamp":"2016-10-16T18:23:48.511Z"}
+{"level":"info","message":"getcart query was failed","timestamp":"2016-10-16T18:23:48.512Z"}
+{"level":"info","message":"inside cart page get method!","timestamp":"2016-10-16T18:24:16.290Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T18:24:16.609Z"}
+{"level":"info","message":"inside /getCart post method!","timestamp":"2016-10-16T18:24:16.616Z"}
+{"level":"info","message":"select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='44'","timestamp":"2016-10-16T18:24:16.619Z"}
+{"level":"info","message":"getcart query was failed","timestamp":"2016-10-16T18:24:16.620Z"}
+{"level":"info","message":"inside cart page get method!","timestamp":"2016-10-16T18:24:22.268Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T18:24:22.646Z"}
+{"level":"info","message":"inside /getCart post method!","timestamp":"2016-10-16T18:24:22.651Z"}
+{"level":"info","message":"select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='44'","timestamp":"2016-10-16T18:24:22.652Z"}
+{"level":"info","message":"getcart query was failed","timestamp":"2016-10-16T18:24:22.653Z"}
+{"level":"info","message":"inside cart page get method!","timestamp":"2016-10-16T18:24:28.708Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T18:24:28.886Z"}
+{"level":"info","message":"inside /getCart post method!","timestamp":"2016-10-16T18:24:28.893Z"}
+{"level":"info","message":"select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='44'","timestamp":"2016-10-16T18:24:28.896Z"}
+{"level":"info","message":"getcart query was failed","timestamp":"2016-10-16T18:24:28.897Z"}
