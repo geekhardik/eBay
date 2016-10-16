@@ -112,7 +112,7 @@ router.post('/boughtPage', function(req, res, next) {
 				}
 			}, query,JSON_query); 
 			
-			//insert detailed item lists into bought_detail table
+			//insert detailed item lists into order_details table
 			
 			for (i=0;i<size;i++){
 			
@@ -240,6 +240,7 @@ router.post('/bid', function(req, res, next) {
 			var bid = req.body.bid_price;
 			var user = req.session.user.user_id;
 			
+			console.log("bid amount is : "+ bid);		
 			var query = "INSERT INTO bids SET ?	";
 			
 			var JSON_query = {
@@ -373,13 +374,7 @@ router.post('/item', function(req, res, next) {
 						logger.log('info','Item listing is active');
 						res.send({list : results});
 					} else {
-						logger.log('info','Item listing is expired');	
-						
-						// let's get the highest bidder and
-						
-						
-						
-						
+						logger.log('info','Item listing is expired');						
 						res.send({list : "redirect"});
 						
 					}					
@@ -536,6 +531,129 @@ router.post('/sell', function(req, res, next) {
 		} else {
 			if (results.affectedRows === 1) {
 				logger.log('info','items were inserted in sell table successfully');
+				
+				//now let's make provision for auction
+				
+				if(req.body.price_option == "auction"){
+					logger.log('info','item catogory is auction!');
+					
+					var millisec_time = 90000;					
+					
+					setTimeout(function () {
+    				console.log('timeout completed'); 
+
+    				
+    				//get the highest bidder 
+
+    				var query = "SELECT * from ebay.bids where price = (SELECT MAX(price) FROM ebay.bids)";
+    				var winner;
+    				var item_id;
+						
+						mysql.fetchData(function(err, results) {
+							if (err) {
+								throw err;
+							} else {
+								if (results.length > 0) {
+									logger.log('info','selected highest bidder from bids databases');
+									console.log(results);
+									var winner = results[0].user_id;
+									var item_id = results[0].item_id;
+									console.log(winner);	
+									console.log(item_id);
+
+			    					var transection_id = uuid.v1();
+			    					//update transection table
+
+			    					var query = "INSERT INTO transection SET ?";
+						
+									var JSON_query = {
+											"total" : req.body.price,
+											"user_id" : winner ,	
+											"id" : transection_id
+									};
+									
+									mysql.fetchData(function(err, results) {
+										if (err) {
+											throw err;
+										} else {
+											if (results.affectedRows === 1) {
+												logger.log('info','inserted details into transection databases');	
+												
+												//update order_details table
+
+												var query = "INSERT INTO order_details SET ?";
+												
+												var JSON_query = {
+														"seller_id" : req.session.user.user_id,
+														"item" : req.body.item,	
+														"transection_id" : transection_id,
+														"qty" : 1					
+												};
+												
+												mysql.fetchData(function(err, results) {
+													if (err) {
+														throw err;
+													} else {
+														if (results.affectedRows === 1) {
+															
+															logger.log('info','inserted items into order_details database');				
+															
+															//update qty in sell table
+															
+															var query = "delete from sell where item_id = '"+item_id+"' AND price_option = 'auction' AND seller_id = '"+req.session.user.user_id+"'";
+															
+															mysql.fetchData(function(err, results) {
+																if (err) {
+																	throw err;
+																} else {
+																	if (results.affectedRows === 1) {							
+																		logger.log('info','deleted items from sell database');									
+																			
+																		//update bids qty as well!..
+
+																		var query = "delete from bids where item_id = '"+item_id+"'";
+																					
+																					mysql.fetchData(function(err, results) {
+																						if (err) {
+																							throw err;
+																						} else {
+																							if (results.length > 0) {							
+																								logger.log('info','deleted items from bids database');									
+																																		
+																							} else{
+																								logger.log('info','counld not delete records from sell table!');
+																							}
+																						}
+																					}, query); 
+																	} else{
+																		logger.log('info','counld not delete records from sell table!');
+																	}
+																}
+															}, query); 
+														} 
+													}
+												}, query,JSON_query); 	
+											}else{
+												logger.log('info','No bidders for this item!');
+											} 
+										}
+									}, query,JSON_query); 												
+											} 
+										}
+									}, query,JSON_query); 
+
+
+									
+									
+
+					
+						
+						
+
+					}, millisec_time)}; 
+				
+				
+				
 				var json_responses = {
 					"statusCode" : 200
 				};
