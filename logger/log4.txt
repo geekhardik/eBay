@@ -1,0 +1,14 @@
+{"level":"info","message":"UPDATE sell SET ebay.sell.qty = ebay.sell.qty -8 where item_id = '13'","timestamp":"2016-10-16T05:49:35.668Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-16T05:49:37.503Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T05:49:37.825Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-16T05:49:37.833Z"}
+{"level":"info","message":"select * from sell where not seller_id ='43'","timestamp":"2016-10-16T05:49:37.834Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-16T05:49:37.839Z"}
+{"level":"info","message":"inside /item get","timestamp":"2016-10-16T05:50:00.837Z"}
+{"level":"info","message":"inside /item post","timestamp":"2016-10-16T05:50:01.179Z"}
+{"level":"info","message":"select * from sell where item_id='13'","timestamp":"2016-10-16T05:50:01.180Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-16T05:50:11.430Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T05:50:11.687Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-16T05:50:11.694Z"}
+{"level":"info","message":"select * from sell where not seller_id ='43'","timestamp":"2016-10-16T05:50:11.698Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-16T05:50:11.706Z"}

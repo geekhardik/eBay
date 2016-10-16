@@ -1,5 +1,8 @@
 var ejs= require('ejs');
 var mysql = require('mysql');
+var logger = require('../logger/logger');
+
+
 //var pool = require('mysql').createPool(opts);
 
 //Put your mysql configuration settings - user, password, database and port
@@ -52,8 +55,9 @@ function fetchData(callback,sqlQuery,JSON_args){
 		}
 		
 	});
-	console.log(query.sql);
-	console.log("\nConnection closed..");
+	logger.log('info',query.sql);
+//	console.log(query.sql);
+//	console.log("\nConnection closed..");
 	connection.end();
 }	
 

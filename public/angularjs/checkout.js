@@ -32,17 +32,15 @@ app.controller('checkout',function($scope,$http){
 		}
 					
 	}).success(function(data){
-		if (data.success == 200) {
-			console.log("done");
-//			window.location.assign('cart');
+		if (data.message == 200) {
+			alert("Thank you for placing the order. your product will be delivered to you shortly.");
+			window.location.assign('home');
 						
 		}else{
-			alert("Please sign-in first!");
-//			window.location.assign('signin');
-			
+			alert(data.message);
 		}
 	});
-}
+};
 	
 });
 	

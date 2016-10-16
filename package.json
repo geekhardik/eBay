@@ -17,6 +17,7 @@
     "node-uuid": "^1.4.7",
     "nodemon": "*",
     "opts": "^1.2.2",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "winston": "^2.2.0"
   }
 }

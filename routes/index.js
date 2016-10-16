@@ -7,13 +7,38 @@ var uuid = require('node-uuid');
 var crypto = require('crypto');
 
 
+const winston = require('winston');
+
+var logger = require('../logger/logger');
+
+
+
+// const fs = require('fs');
+// const env = process.env.NODE_ENV || 'development';
+// const logDir = 'log';
+
+/*
+ * //Create the log directory if it does not exist if (!fs.existsSync(logDir)) {
+ * fs.mkdirSync(logDir); } const tsFormat() = (new Date()).toLocaleTimeString();
+ * const logger = new (winston.Logger)({ transports: [ // colorize the output to
+ * the console new (winston.transports.Console)({ timestamp: tsFormat, colorize:
+ * true, level: 'info' }), new (winston.transports.File)({ filename:
+ * `${logDir}/results.log`, timestamp: tsFormat, level: env === 'development' ?
+ * 'debug' : 'info' }) ] }); logger.info('Hello world'); logger.warn('Warning
+ * message'); logger.debug('Debugging info');
+ */
+
+
+
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	res.render('signin');
+	logger.log('info','inside / routing get method!');
 });
 
 router.get('/cart', function(req, res, next) {
-	
+	logger.log('info','inside cart page get method!');
 	if(req.session.user){
 		res.render('cart');
 		}
@@ -23,11 +48,13 @@ router.get('/cart', function(req, res, next) {
 });
 
 router.post('/gotoCheckout', function(req, res, next) {
+	logger.log('info','inside gotocheckout page post method!');
 	res.send({success : 200});
-//	res.render('checkout');
+	
 });
 
 router.get('/checkout', function(req, res, next) {
+	logger.log('info','inside gotocheckout page post method!');
 	if(req.session.user){
 		res.render('checkout');
 		}
@@ -38,7 +65,7 @@ router.get('/checkout', function(req, res, next) {
 
 
 router.post('/boughtPage', function(req, res, next) {
-	
+	logger.log('info','inside boughtPage page post method!');
 	var cc = req.body.cc;
 	var exp_month = req.body.exp_month;
 	var exp_year = req.body.exp_year;
@@ -58,10 +85,10 @@ router.post('/boughtPage', function(req, res, next) {
 	
 //	console.log(cc + " " + exp_month + " "+ exp_year + " "+ cvv);
 	
-//	check.Tocheck(cc,exp_month, exp_year,cvv,function(answer,message){
-		
+	check.Tocheck(cc,exp_month, exp_year,cvv,function(answer,message){
+		logger.log('info','credit card validation is successful!');
 			
-//		if(answer){	
+		if(answer){	
 			var transection_id = uuid.v1();
 			console.log("CC check is OK");
 			
@@ -79,8 +106,8 @@ router.post('/boughtPage', function(req, res, next) {
 					throw err;
 				} else {
 					if (results.affectedRows === 1) {
-						console.log("added to transection cart");	
-//						
+						logger.log('info','inserted details into transection databases');
+					
 					} 
 				}
 			}, query,JSON_query); 
@@ -104,7 +131,7 @@ router.post('/boughtPage', function(req, res, next) {
 					} else {
 						if (results.affectedRows === 1) {
 							
-							console.log("added to order_details cart");	
+							logger.log('info','inserted items into bought_detail database');
 							console.log("i : "+i+" "+count);
 							//update qty in sell table
 							qty = checkout_cart[count].qty;
@@ -116,11 +143,10 @@ router.post('/boughtPage', function(req, res, next) {
 									throw err;
 								} else {
 									if (results.affectedRows === 1) {							
-										
-										console.log("qty updated in sell table");									
+										logger.log('info','deleted items from sell database');									
 																				
 									} else{
-										console.log("not inside loop");
+										logger.log('info','counld not delete records from sell table!');
 									}
 								}
 							}, query); 
@@ -138,16 +164,21 @@ router.post('/boughtPage', function(req, res, next) {
 					throw err;
 				} else {
 					if (results.affectedRows === 1) {
-						console.log("added to transection cart");						
+						logger.log('info','deleted entries from cart database');					
 					} 
 				}
 			}, query); 
-	
+			res.send({"message" : 200});
+		}else{
+			logger.log('error','credit card details were incorrect!');
+			res.send({"message" : message});
+		}
+		});	
 });
 
 
 router.get('/home', function(req, res, next) {
-	console.log("inside home");
+	logger.log('info','inside home page get method!');
 	if(req.session.user){
 	res.render('home',{username : req.session.user.username});
 	}
@@ -157,7 +188,7 @@ router.get('/home', function(req, res, next) {
 });
 
 router.post('/home', function(req, res, next) {
-	
+	logger.log('info','inside /home post method!');
 	if(req.session.user){
 	res.send({entry : "signout"});
 	}
@@ -168,7 +199,7 @@ router.post('/home', function(req, res, next) {
 
 
 router.post('/getCart', function(req, res, next) {
-	console.log("in getcart!");
+	logger.log('info','inside /getCart post method!');
 	var query = "select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='"+req.session.user.user_id+"'";
 	var total_price = 0;
 	mysql.fetchData(function(err, results) {
@@ -176,7 +207,7 @@ router.post('/getCart', function(req, res, next) {
 			throw err;
 		} else {
 			if (results.length > 0) {
-				console.log("successful retirval of cart");
+				logger.log('info','getcart retrival is successful');
 				
 				for(var i=0;i<results.length;i++){
 					total_price += (Number(results[i].price)*Number(results[i].qty));	
@@ -190,7 +221,7 @@ router.post('/getCart', function(req, res, next) {
 				
 				res.send(JSON_obj);							
 			} else {
-				console.log("no entries found in DB!");
+				logger.log('info','getcart query was failed');
 			}
 		}
 	},query); 
@@ -198,11 +229,51 @@ router.post('/getCart', function(req, res, next) {
 });
 
 
+router.post('/bid', function(req, res, next) {
+	
+	logger.log('info','inside /bid post');
+		
+		if(req.session.user){	
+			
+			var bid_item = req.body.obj;
+			var qty = req.body.qty;
+			var bid = req.body.bid_price;
+			var user = req.session.user.user_id;
+			
+			var query = "INSERT INTO bids SET ?	";
+			
+			var JSON_query = {
+					"user_id" : req.session.user.user_id,
+					"user" : req.session.user.username,
+					"item" : bid_item.item,
+					"price" : bid,
+					"item_id" : bid_item.item_id
+				};
+			
+			mysql.fetchData(function(err, results) {
+				if (err) {
+					throw err;
+				} else {
+					if (results.affectedRows === 1) {
+						logger.log('info','bid inserted into bid table');	
+						res.send({success : 200});
+					} 
+				}
+			}, query,JSON_query);		
+								
+		}else{		
+			res.send({success : 401});
+		}
+	});
+
+
+
+
 
 
 router.post('/cart', function(req, res, next) {
 	
-// var cart_items = [];
+	logger.log('info','inside /cart post');
 	
 	if(req.session.user){	
 		
@@ -220,7 +291,8 @@ router.post('/cart', function(req, res, next) {
 			} else {
 				
 				if (results.length > 0) {
-					console.log("already exist!");
+
+					logger.log('info','Selected Item exists in cart already!');
 					var current_qty = results[0].qty;
 					var new_qty = qty + current_qty;
 					var query = "update cart SET cart.qty ='"+ new_qty+"' where cart.id = '"+cart_item.item_id+"'";
@@ -230,7 +302,7 @@ router.post('/cart', function(req, res, next) {
 							throw err;
 						} else {
 							if (answer.length == null) {
-								console.log("qty updated to cart");	
+								logger.log('info','selected quantity was updated into cart');
 								res.send({success : 200});
 							}else{
 								console.log("no records!");
@@ -256,7 +328,7 @@ router.post('/cart', function(req, res, next) {
 							throw err;
 						} else {
 							if (results.affectedRows === 1) {
-								console.log("added to cart");	
+								logger.log('info','selected quantity was added into cart');	
 								res.send({success : 200});
 							} 
 						}
@@ -273,12 +345,12 @@ router.post('/cart', function(req, res, next) {
 
 
 router.get('/item', function(req, res, next) {
-	res.render('item');	
-	
+	logger.log('info','inside /item get');
+	res.render('item');		
 });
 
 router.post('/item', function(req, res, next) {
-	
+	logger.log('info','inside /item post');
 	var id = req.body.id;
 	var query = "select * from sell where item_id=?";
 	mysql.fetchData(function(err, results) {
@@ -286,10 +358,36 @@ router.post('/item', function(req, res, next) {
 			throw err;
 		} else {
 			if (results.length > 0) {
-				res.send({list : results});
+				
+				if(results[0].price_option == "auction"){
+					logger.log('info','item catogory is auction!');
+					var sell_time = results[0].time;
+					var sell_sec = sell_time.getMilliseconds();
+					var today = new Date();
+					today.setDate(today.getDate() + 4);
+					
+					console.log("bid expiry :"+today);
+					console.log("bid date : "+sell_time);
+					
+					if (today > sell_time) {
+						logger.log('info','Item listing is active');
+						res.send({list : results});
+					} else {
+						logger.log('info','Item listing is expired');	
 						
+						// let's get the highest bidder and
+						
+						
+						
+						
+						res.send({list : "redirect"});
+						
+					}					
+				}else{
+					res.send({list : results});
+				}
 			} else {
-				console.log("no entries found in DB!");
+				logger.log('info','no items found in items table!');
 			}
 		}
 	}, query,id);
@@ -298,7 +396,7 @@ router.post('/item', function(req, res, next) {
 
 
 router.post('/cataLouge', function(req, res, next) {
-	console.log("in CataLouge");
+	logger.log('info','inside /cataLouge post');
 		
 	// let's get sell items info from table sell into DB
 	if(req.session.user){
@@ -311,12 +409,10 @@ router.post('/cataLouge', function(req, res, next) {
 			throw err;
 		} else {
 			if (results.length > 0) {
-// console.log("items exists in catalouge");
-// console.log(results);
-				res.send({list : results});
-						
+				logger.log('info','cataLouge retrival was successful'); 
+				res.send({list : results});						
 			} else {
-				console.log("no entries found in DB!");
+				logger.log('info','cataLouge is empty');
 			}
 		}
 	}, query);
@@ -325,11 +421,12 @@ router.post('/cataLouge', function(req, res, next) {
 
 
 router.get('/signup', function(req, res, next) {
+	logger.log('info','inside /signup get');
 	res.render('signup', {title : 'Signup'});
 });
 
 router.get('/signin', function(req, res, next) {
-	
+	logger.log('info','inside /signin get');
 	if(req.session.user){
 		res.render('home',{"username" : req.session.user.username});
 	}
@@ -341,37 +438,34 @@ router.get('/signin', function(req, res, next) {
 });
 
 router.post('/logout', function(req, res, next) {
+	logger.log('info','inside /logout post');
 	req.session.destroy();	
 	res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
 	res.send({"statusCode" : 200});
 });
 
 
-
 router.post('/afterSignIn', function(req, res, next) {
-
+	logger.log('info','inside /afterSignIn post');
 	var username = req.body.inputUsername;
 	var password = req.body.inputPassword;
 
 	var getUser = "select * from users where username=?";
-
-	// console.log("Query is:"+getUser);
 
 	mysql.fetchData(function(err, results) {
 		if (err) {
 			throw err;
 		} else {
 			if (results.length > 0) {
-				
-				console.log(results);
-				
-				//get salt and hash it with password and check if two passwords are same or not!
+												
+				// get salt and hash it with password and check if two passwords
+				// are same or not!
 				
 				var get_salt = results[0].salt;
 				var get_password = results[0].password;
 				
 				var sha512 = function(password, salt){
-				    var hash = crypto.createHmac('sha512', salt); /** Hashing algorithm sha512 */
+				    var hash = crypto.createHmac('sha512', salt); 
 				    hash.update(password);
 				    var value = hash.digest('hex');
 				    return {
@@ -391,22 +485,21 @@ router.post('/afterSignIn', function(req, res, next) {
 				
 				if(hashed_pass === get_password){
 					console.log("user is valid");
-					//since user is valid. let's make his session!
+					// since user is valid. let's make his session!
 					res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
 					req.session.user = {
 							"user_id" : results[0].user_id,
 							"username" : username
 					};
-					console.log("user_id is : " + req.session.user.user_id);	
+					logger.log('info','signin was successful');	
 					res.send({"statusCode" : 200});	
 				
 				}else{
-				console.log("Invalid Login");
+					logger.log('info','signin was failed');
 				res.send({"statusCode" : 401});
 				}
 			} else {
-
-				console.log("Invalid Login");
+				logger.log('info','signin was failed');
 				res.send({"statusCode" : 401});	
 			}
 		}
@@ -414,13 +507,12 @@ router.post('/afterSignIn', function(req, res, next) {
 });
 
 router.get('/sell', function(req, res, next) {
-	res.render('sell', {
-		title : 'sell'
-	});
+	logger.log('info','inside /sell get');
+	res.render('sell', {title : 'sell'});
 });
 
 router.post('/sell', function(req, res, next) {
-	console.log("inside sell")
+	logger.log('info','inside /sell post');
 	if(req.session.user){
 	
 	var JSON_query = {
@@ -435,7 +527,7 @@ router.post('/sell', function(req, res, next) {
 		"duration" : req.body.duration,
 		"location" : req.body.location,
 	};
-	console.log(JSON_query);
+	
 	var query_string = "INSERT INTO sell SET ?";
 
 	mysql.fetchData(function(err, results) {
@@ -443,13 +535,13 @@ router.post('/sell', function(req, res, next) {
 			throw err;
 		} else {
 			if (results.affectedRows === 1) {
-				console.log("signup successful");
+				logger.log('info','items were inserted in sell table successfully');
 				var json_responses = {
 					"statusCode" : 200
 				};
 				res.send(json_responses);
 			} else {
-				console.log("didn't insert the query!");
+				logger.log('info','items could not be inserted in sell table');
 				 json_responses = {
 					"statusCode" : 401
 				};
@@ -468,15 +560,13 @@ router.post('/sell', function(req, res, next) {
 });
 
 router.post('/signup_scccess', function(req, res, next) {
-
+	logger.log('info','inside /signup_scccess post');
 	var first_name = req.body.firstname;
 	var last_name = req.body.lastname;
 	var user_name = req.body.username;
 	var get_password = req.body.password;
 
-	// console.log(firstname + " " + lastname + " "+ username+ " "+ password);
-	
-	//password salt hash
+	// password salt hash
 
 	var genRandomString = function(length){
 	    return crypto.randomBytes(Math.ceil(length/2))
@@ -485,7 +575,10 @@ router.post('/signup_scccess', function(req, res, next) {
 	};
 
 	var sha512 = function(password, salt){
-	    var hash = crypto.createHmac('sha512', salt); /** Hashing algorithm sha512 */
+	    var hash = crypto.createHmac('sha512', salt); /**
+														 * Hashing algorithm
+														 * sha512
+														 */
 	    hash.update(password);
 	    var value = hash.digest('hex');
 	    return {
@@ -500,9 +593,6 @@ router.post('/signup_scccess', function(req, res, next) {
 	function saltHashPassword(userpassword) {
 	    var salt = genRandomString(16); /** Gives us salt of length 16 */
 	    var passwordData = sha512(userpassword, salt);
-//	    console.log('UserPassword = '+userpassword);
-//	    console.log('Passwordhash = '+passwordData.passwordHash);
-//	    console.log('\nSalt = '+passwordData.salt);
 	    hashed_pass = passwordData.passwordHash;
 	    get_salt = salt;
 	}
@@ -530,11 +620,10 @@ router.post('/signup_scccess', function(req, res, next) {
 			
 		} else {
 			if (results.affectedRows === 1) {
-				console.log("signup successful");
-//				res.redirect('signin');
+				logger.log('info','signup was successful');
 				statusCode = 200;
 			} else {
-				console.log("didn't insert the query!");
+				logger.log('info','signup failed');
 				statusCode = 401;
 			}
 		}
@@ -542,5 +631,4 @@ router.post('/signup_scccess', function(req, res, next) {
 	}, query_string, JSON_query);
 
 });
-
 module.exports = router;
