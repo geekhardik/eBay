@@ -36,7 +36,7 @@ Pool.prototype.get = function()
     return cli;
 }
 
-var p = new Pool(100);
+var p = new Pool(10);
 
 function fetchData(callback,sqlQuery,JSON_args){
 	
@@ -56,9 +56,30 @@ function fetchData(callback,sqlQuery,JSON_args){
 		
 	});
 	logger.log('info',query.sql);
-//	console.log(query.sql);
-//	console.log("\nConnection closed..");
-	connection.end();
+//	connection.end();
 }	
+
+/*
+//normal mysql connection
+function fetchData(callback, sqlQuery,JSON_args) {
+	
+	var connection = getConnection();
+	connection.query(sqlQuery,JSON_args, function(err, rows, fields) {
+		if (err) {
+			console.log("ERROR: " + err.message);
+		} else { // return err or result
+			console.log("DB Results:" + rows);
+			callback(err, rows);
+		}
+	});
+//	logger.log('info',query+JSON_args);
+	console.log("\nConnection closed..");
+	connection.end();
+}*/
+
+
+
+
+
 
 exports.fetchData=fetchData;

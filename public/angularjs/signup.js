@@ -1,16 +1,18 @@
 var app = angular.module("myApp", []);
 app.controller('signupCtrl',function($scope,$http){
 	console.log("in signup angular");	
+	
 	$scope.signup = function(){
-		
-		$http({			
+			$http({			
 			method: "POST",
 			url : '/signup_scccess',
 			data : {
 				"firstname" : $scope.firstname,
 				"lastname" : $scope.lastname,
 				"username" : $scope.username,
-				"password" : $scope.password
+				"password" : $scope.password,
+				"contact" : $scope.contact,
+				"location" : $scope.location
 			}
 					
 		}).success(function(data){
@@ -19,7 +21,7 @@ app.controller('signupCtrl',function($scope,$http){
 				window.location.assign("/signup");
 			}else if(data.statusCode == 10){
 				console.log("invalid");
-				alert("username is already in records! please use different userid");
+//				alert("username is already in records! please use different userid");
 			}
 			else{
 				

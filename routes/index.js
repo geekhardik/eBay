@@ -12,25 +12,6 @@ const winston = require('winston');
 var logger = require('../logger/logger');
 
 
-
-// const fs = require('fs');
-// const env = process.env.NODE_ENV || 'development';
-// const logDir = 'log';
-
-/*
- * //Create the log directory if it does not exist if (!fs.existsSync(logDir)) {
- * fs.mkdirSync(logDir); } const tsFormat() = (new Date()).toLocaleTimeString();
- * const logger = new (winston.Logger)({ transports: [ // colorize the output to
- * the console new (winston.transports.Console)({ timestamp: tsFormat, colorize:
- * true, level: 'info' }), new (winston.transports.File)({ filename:
- * `${logDir}/results.log`, timestamp: tsFormat, level: env === 'development' ?
- * 'debug' : 'info' }) ] }); logger.info('Hello world'); logger.warn('Warning
- * message'); logger.debug('Debugging info');
- */
-
-
-
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	res.render('signin');
@@ -46,6 +27,84 @@ router.get('/cart', function(req, res, next) {
 			res.redirect('signin');
 		}	
 });
+
+router.get('/profile', function(req, res, next) {
+	res.render('profile');
+	logger.log('info','inside /profile routing get method!');
+});
+
+
+router.post('/getbought', function(req, res, next) {
+	logger.log('info','inside getbought page post method!');
+	
+	var query = "select * from ebay.order_details where user_id = '"+req.session.user.user_id+"'";
+	
+	mysql.fetchData(function(err, results) {
+		if (err) {
+			throw err;
+		} else {
+			if (results.length > 0) {
+				logger.log('info','purchase history retrival is successful');
+				
+				console.log(results);				
+				res.send({bought : results});							
+			} else {
+				logger.log('info','bought history query was failed');
+			}
+		}
+	},query); 
+	
+	
+});
+
+
+
+router.post('/getuserinfo', function(req, res, next) {
+	logger.log('info','inside getuserinfo page post method!');
+	if(req.session.user){
+	var query = "select * from ebay.users where user_id = '"+req.session.user.user_id+"'";
+	
+	mysql.fetchData(function(err, results) {
+		if (err) {
+			throw err;
+		} else {
+			if (results.length > 0) {
+				logger.log('info','user information retrival is successful');
+										
+				res.send({info : results});							
+			} else {
+				logger.log('info','user information query was failed');
+			}
+		}
+	},query); 
+	}else{
+		res.send({info : "redirect"});
+	}
+});
+
+
+router.post('/getSold', function(req, res, next) {
+	logger.log('info','inside getSold page post method!');
+	
+	var query = "select * from ebay.sell where seller_id= '"+req.session.user.user_id+"'";
+	
+	mysql.fetchData(function(err, results) {
+		if (err) {
+			throw err;
+		} else {
+			if (results.length > 0) {
+				logger.log('info','selling history retrival is successful');
+				
+				console.log(results);				
+				res.send({sold : results});							
+			} else {
+				logger.log('info','selling history query was failed');
+			}
+		}
+	},query); 
+	
+});
+
 
 router.post('/gotoCheckout', function(req, res, next) {
 	logger.log('info','inside gotocheckout page post method!');
@@ -122,7 +181,10 @@ router.post('/boughtPage', function(req, res, next) {
 						"seller_id" : checkout_cart[i].seller_id,
 						"item" : checkout_cart[i].item,	
 						"transection_id" : transection_id,
-						"qty" : checkout_cart[i].qty					
+						"qty" : checkout_cart[i].qty,
+						"item_id" : checkout_cart[i].item_id,
+						"user_id" : req.session.user.user_id,
+						"price" : checkout_cart[i].price
 				};
 				
 				mysql.fetchData(function(err, results) {
@@ -683,7 +745,8 @@ router.post('/signup_scccess', function(req, res, next) {
 	var last_name = req.body.lastname;
 	var user_name = req.body.username;
 	var get_password = req.body.password;
-
+	var contact = req.body.contact;
+	var location = req.body.location;
 	// password salt hash
 
 	var genRandomString = function(length){
@@ -726,7 +789,9 @@ router.post('/signup_scccess', function(req, res, next) {
 		"lastname" : last_name,
 		"username" : user_name,
 		"password" : hashed_pass,
-		"salt" : get_salt
+		"salt" : get_salt,
+		"contact" : contact,
+		"location" : location		
 	};
 
 	var statusCode = 0;
