@@ -1,0 +1,2 @@
+{"level":"info","message":"inside / routing get method!","timestamp":"2016-10-17T05:18:42.458Z"}
+{"level":"info","message":"inside /signup get","timestamp":"2016-10-17T05:19:15.999Z"}

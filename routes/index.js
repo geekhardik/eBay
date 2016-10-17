@@ -349,7 +349,7 @@ router.post('/bid', function(req, res, next) {
 					throw err;
 				} else {
 					if (results.affectedRows === 1) {
-						logger.log('info','bid inserted into bid table');	
+						logger.log('info', 'bid inserted into bid table');	
 						res.send({success : 200});
 					} 
 				}
@@ -636,7 +636,7 @@ router.post('/sell', function(req, res, next) {
 					var millisec_time = 345600000;				//for 4 days!	
 					
 					setTimeout(function () {
-    				console.log('timeout completed'); 
+						logger.log('info','Bid is expired and now automatic function will perfrom the task to announce winner!'); 
 
     				
     				//get the highest bidder 
@@ -673,7 +673,7 @@ router.post('/sell', function(req, res, next) {
 											throw err;
 										} else {
 											if (results.affectedRows === 1) {
-												logger.log('info','inserted details into transection databases');	
+												logger.log('info','winner of bid transection table is updated');	
 												
 												//update order_details table
 
