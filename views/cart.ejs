@@ -78,7 +78,7 @@
                         <th>Product</th>
                         <th>Quantity</th>
                         <th class="text-center">Price</th>
-                        <th class="text-center">Total</th>
+                       
                 <tbody>                        
                     </tr>
                 </thead>
@@ -92,13 +92,12 @@
                                 <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
                             </div>
                         </div></td>
-                        <td class="col-sm-1 col-md-1" style="text-align: center">
-                        <input type="number" class="form-control" id="qty" value="{{x.qty}}">
+                        <td class="col-sm-1 col-md-1" style="text-align: center">{{x.qty}}
+                        
                         </td>
                         <td class="col-sm-1 col-md-1 text-center"><strong>{{x.price}}</strong></td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>{{x.total}}}</strong></td>
                         <td class="col-sm-1 col-md-1">
-                        <button type="button" class="btn btn-danger">
+                        <button type="button" class="btn btn-danger" ng-click="delet(x);">
                             <span class="glyphicon glyphicon-remove"></span> Remove
                         </button></td>
                     </tr>

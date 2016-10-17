@@ -3,6 +3,12 @@ var app = angular.module('myApp',[]);
 
 app.controller('signinCtrl',function($scope,$http){
 	console.log("posted data to server");	
+	
+	$scope.gotosignup = function(){
+		window.location.assign("/signup");
+	}
+	
+	
 	$scope.signin = function(){
 		
 		$http({			

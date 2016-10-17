@@ -58,6 +58,30 @@ router.post('/getbought', function(req, res, next) {
 });
 
 
+router.post('/delet_cartitem', function(req, res, next) {
+	logger.log('info','inside /delet_cartitem page post method!');
+	
+	var del_obj = req.body.obj;
+	console.log(req.body.obj);
+	var query = "delete from ebay.cart where user_id = '"+req.session.user.user_id+"' and item = '"+del_obj.item+"'";
+	
+	mysql.fetchData(function(err, results) {
+		if (err) {
+			throw err;
+		} else {
+			if (results.affectedRows === 1) {
+				logger.log('info','Item deletion was successful');
+											
+				res.send({success : 200});							
+			} else {
+				logger.log('info','Item deletion was failed');
+				res.send({success : 401});	
+			}
+		}
+	},query); 
+	
+	
+});
 
 router.post('/getuserinfo', function(req, res, next) {
 	logger.log('info','inside getuserinfo page post method!');
@@ -306,7 +330,6 @@ router.post('/bid', function(req, res, next) {
 		if(req.session.user){	
 			
 			var bid_item = req.body.obj;
-			var qty = req.body.qty;
 			var bid = req.body.bid_price;
 			var user = req.session.user.user_id;
 			
@@ -578,8 +601,11 @@ router.get('/sell', function(req, res, next) {
 
 router.post('/sell', function(req, res, next) {
 	logger.log('info','inside /sell post');
-	if(req.session.user){
-	
+	if(!req.session.user){
+		json_responses = {"statusCode" : 401};
+				res.send(json_responses);
+		
+	}else{	
 	var JSON_query = {
 
 		"item" : req.body.item,
@@ -710,18 +736,9 @@ router.post('/sell', function(req, res, next) {
 									}, query,JSON_query); 												
 											} 
 										}
-									}, query,JSON_query); 
-
-
-									
-									
-
-					
-						
-						
+									}, query,JSON_query); 					
 
 					}, millisec_time)}; 
-				
 				
 				
 				var json_responses = {
@@ -738,11 +755,6 @@ router.post('/sell', function(req, res, next) {
 		}
 	}, query_string, JSON_query);
 	
-	}else{
-		json_responses = {
-				"statusCode" : 401
-			};
-			res.send(json_responses);
 	}
 
 });
@@ -756,7 +768,10 @@ router.post('/signup_scccess', function(req, res, next) {
 	var contact = req.body.contact;
 	var location = req.body.location;
 	// password salt hash
-
+	
+	if(req.body.password == null || req.body.password == undefined){
+		res.send({"statusCode" : 401});
+	}
 	var genRandomString = function(length){
 	    return crypto.randomBytes(Math.ceil(length/2))
 	            .toString('hex') /** convert to hexadecimal format */
@@ -806,9 +821,8 @@ router.post('/signup_scccess', function(req, res, next) {
 	// insert signup data into DB
 	mysql.fetchData(function(err, results) {
 		if (err) {
-			statusCode = 10;
-			throw err;
-			
+			statusCode = 401;
+			throw err;			
 		} else {
 			if (results.affectedRows === 1) {
 				logger.log('info','signup was successful');

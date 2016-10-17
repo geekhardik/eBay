@@ -15,7 +15,23 @@
   <link rel='stylesheet' href='/stylesheets/item.css' /> 
   
 </head>
+<style>
+.main {
+	border:1px solid; 
+	margin-top:0px!important;
+	padding-top:10px;
+	height : 70px;
+}
 
+.container-fluid {
+	margin-top:0px!important;
+	padding-top:0px!important;
+	padding-left:0px!important;
+	padding-right:0px!important;
+}
+
+
+</style>
 <script>
          
          function getdetails(sParam)
@@ -37,6 +53,42 @@
  </script>
 
 <body ng-app="myApp" ng-controller="item" class="container-fluid" ng-init="getitem(id)">
+
+<div  class="main" style="" >
+<nav class="navbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <img src="images/ebay.png" class="img-rounded" alt="ebay" width="80" height="50">
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/home">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="/profile">{{username}}<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/profile">Buy/Sell details</a></li>
+          </ul>
+        </li>
+        <li><a href="/cart">cart</a></li>
+        <li><a href="/sell">Sell</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><span  class="btn" ng-click="signcheck()">{{sign}}</span></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</div>
+
+
+
+
 
 <div class="container-fluid">
     <div class="content-wrapper"> 
@@ -70,10 +122,10 @@
           
           <div class="product-rating"><i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star-o"></i> </div>
           <hr>
-          <div class="product-price"><input type="number" ng-model="qty" min="1" ng-maxlength="{{x.qty}}" placeholder = "Enter Item Quantity"></div>
+          <div class="product-price"><input type="number" ng-hide="qty_field" ng-model="qty" min="1" ng-maxlength="{{x.qty}}" placeholder = "Enter Item Quantity"></div>
           
           <div class="Product-price" ng-hide="bid_tab">
-					<input type="number" ng-model="bid_amount" ng-minlength="{{x.price}}" placeholder="place your bid!"> 
+					<input type="number" ng-model="bid_amount" placeholder="place your bid!"> 
 		</div>
 		
 		<div class="Product-price" ng-hide="bid_desc">

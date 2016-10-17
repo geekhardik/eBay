@@ -2,6 +2,11 @@ var app = angular.module("myApp", []);
 app.controller('signupCtrl',function($scope,$http){
 	console.log("in signup angular");	
 	
+	$scope.gotosignin = function(){
+		window.location.assign("/signin");
+	}
+	
+	
 	$scope.signup = function(){
 			$http({			
 			method: "POST",

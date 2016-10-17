@@ -1,88 +1,93 @@
-{"level":"info","message":"inside /profile routing get method!","timestamp":"2016-10-16T17:54:32.028Z"}
-{"level":"info","message":"inside getSold page post method!","timestamp":"2016-10-16T17:54:32.335Z"}
-{"level":"info","message":"select * from ebay.sell where seller_id= '44'","timestamp":"2016-10-16T17:54:32.337Z"}
-{"level":"info","message":"inside getuserinfo page post method!","timestamp":"2016-10-16T17:54:32.342Z"}
-{"level":"info","message":"select * from ebay.users where user_id = '44'","timestamp":"2016-10-16T17:54:32.342Z"}
-{"level":"info","message":"selling history retrival is successful","timestamp":"2016-10-16T17:54:32.343Z"}
-{"level":"info","message":"inside getbought page post method!","timestamp":"2016-10-16T17:54:32.346Z"}
-{"level":"info","message":"select * from ebay.order_details where user_id = '44'","timestamp":"2016-10-16T17:54:32.348Z"}
-{"level":"info","message":"user information retrival is successful","timestamp":"2016-10-16T17:54:32.364Z"}
-{"level":"info","message":"bought history query was failed","timestamp":"2016-10-16T17:54:32.377Z"}
-{"level":"info","message":"inside /profile routing get method!","timestamp":"2016-10-16T17:55:39.174Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T17:55:39.549Z"}
-{"level":"info","message":"inside getSold page post method!","timestamp":"2016-10-16T17:55:39.559Z"}
-{"level":"info","message":"select * from ebay.sell where seller_id= '44'","timestamp":"2016-10-16T17:55:39.567Z"}
-{"level":"info","message":"inside getuserinfo page post method!","timestamp":"2016-10-16T17:55:39.574Z"}
-{"level":"info","message":"select * from ebay.users where user_id = '44'","timestamp":"2016-10-16T17:55:39.576Z"}
-{"level":"info","message":"inside getbought page post method!","timestamp":"2016-10-16T17:55:39.578Z"}
-{"level":"info","message":"select * from ebay.order_details where user_id = '44'","timestamp":"2016-10-16T17:55:39.579Z"}
-{"level":"info","message":"selling history retrival is successful","timestamp":"2016-10-16T17:55:39.610Z"}
-{"level":"info","message":"user information retrival is successful","timestamp":"2016-10-16T17:55:39.679Z"}
-{"level":"info","message":"bought history query was failed","timestamp":"2016-10-16T17:55:39.697Z"}
-{"level":"info","message":"inside home page get method!","timestamp":"2016-10-16T17:56:28.114Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T17:56:28.380Z"}
-{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-16T17:56:28.385Z"}
-{"level":"info","message":"select * from sell where not seller_id ='44'","timestamp":"2016-10-16T17:56:28.386Z"}
-{"level":"info","message":"cataLouge is empty","timestamp":"2016-10-16T17:56:28.391Z"}
-{"level":"info","message":"inside /profile routing get method!","timestamp":"2016-10-16T17:56:31.011Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T17:56:31.260Z"}
-{"level":"info","message":"inside getSold page post method!","timestamp":"2016-10-16T17:56:31.269Z"}
-{"level":"info","message":"select * from ebay.sell where seller_id= '44'","timestamp":"2016-10-16T17:56:31.271Z"}
-{"level":"info","message":"inside getuserinfo page post method!","timestamp":"2016-10-16T17:56:31.273Z"}
-{"level":"info","message":"select * from ebay.users where user_id = '44'","timestamp":"2016-10-16T17:56:31.274Z"}
-{"level":"info","message":"inside getbought page post method!","timestamp":"2016-10-16T17:56:31.277Z"}
-{"level":"info","message":"select * from ebay.order_details where user_id = '44'","timestamp":"2016-10-16T17:56:31.286Z"}
-{"level":"info","message":"selling history retrival is successful","timestamp":"2016-10-16T17:56:31.293Z"}
-{"level":"info","message":"bought history query was failed","timestamp":"2016-10-16T17:56:31.306Z"}
-{"level":"info","message":"user information retrival is successful","timestamp":"2016-10-16T17:56:31.306Z"}
-{"level":"info","message":"inside cart page get method!","timestamp":"2016-10-16T17:56:33.780Z"}
-{"level":"info","message":"inside /getCart post method!","timestamp":"2016-10-16T17:56:33.930Z"}
-{"level":"info","message":"select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='44'","timestamp":"2016-10-16T17:56:33.932Z"}
-{"level":"info","message":"getcart query was failed","timestamp":"2016-10-16T17:56:33.948Z"}
-{"level":"info","message":"inside home page get method!","timestamp":"2016-10-16T17:56:35.318Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T17:56:35.469Z"}
-{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-16T17:56:35.475Z"}
-{"level":"info","message":"select * from sell where not seller_id ='44'","timestamp":"2016-10-16T17:56:35.476Z"}
-{"level":"info","message":"cataLouge is empty","timestamp":"2016-10-16T17:56:35.481Z"}
-{"level":"info","message":"inside cart page get method!","timestamp":"2016-10-16T17:56:36.541Z"}
-{"level":"info","message":"inside /getCart post method!","timestamp":"2016-10-16T17:56:36.678Z"}
-{"level":"info","message":"select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='44'","timestamp":"2016-10-16T17:56:36.679Z"}
-{"level":"info","message":"getcart query was failed","timestamp":"2016-10-16T17:56:36.686Z"}
-{"level":"info","message":"inside home page get method!","timestamp":"2016-10-16T17:56:37.956Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T17:56:38.145Z"}
-{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-16T17:56:38.152Z"}
-{"level":"info","message":"select * from sell where not seller_id ='44'","timestamp":"2016-10-16T17:56:38.153Z"}
-{"level":"info","message":"cataLouge is empty","timestamp":"2016-10-16T17:56:38.154Z"}
-{"level":"info","message":"inside /profile routing get method!","timestamp":"2016-10-16T17:56:40.529Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T17:56:40.697Z"}
-{"level":"info","message":"inside getSold page post method!","timestamp":"2016-10-16T17:56:40.705Z"}
-{"level":"info","message":"select * from ebay.sell where seller_id= '44'","timestamp":"2016-10-16T17:56:40.706Z"}
-{"level":"info","message":"inside getuserinfo page post method!","timestamp":"2016-10-16T17:56:40.709Z"}
-{"level":"info","message":"select * from ebay.users where user_id = '44'","timestamp":"2016-10-16T17:56:40.710Z"}
-{"level":"info","message":"inside getbought page post method!","timestamp":"2016-10-16T17:56:40.721Z"}
-{"level":"info","message":"select * from ebay.order_details where user_id = '44'","timestamp":"2016-10-16T17:56:40.724Z"}
-{"level":"info","message":"selling history retrival is successful","timestamp":"2016-10-16T17:56:40.725Z"}
-{"level":"info","message":"user information retrival is successful","timestamp":"2016-10-16T17:56:40.728Z"}
-{"level":"info","message":"bought history query was failed","timestamp":"2016-10-16T17:56:40.730Z"}
-{"level":"info","message":"inside /profile routing get method!","timestamp":"2016-10-16T17:58:02.304Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T17:58:02.691Z"}
-{"level":"info","message":"inside getSold page post method!","timestamp":"2016-10-16T17:58:02.699Z"}
-{"level":"info","message":"select * from ebay.sell where seller_id= '44'","timestamp":"2016-10-16T17:58:02.701Z"}
-{"level":"info","message":"inside getuserinfo page post method!","timestamp":"2016-10-16T17:58:02.704Z"}
-{"level":"info","message":"select * from ebay.users where user_id = '44'","timestamp":"2016-10-16T17:58:02.706Z"}
-{"level":"info","message":"inside getbought page post method!","timestamp":"2016-10-16T17:58:02.713Z"}
-{"level":"info","message":"select * from ebay.order_details where user_id = '44'","timestamp":"2016-10-16T17:58:02.715Z"}
-{"level":"info","message":"selling history retrival is successful","timestamp":"2016-10-16T17:58:02.716Z"}
-{"level":"info","message":"user information retrival is successful","timestamp":"2016-10-16T17:58:02.721Z"}
-{"level":"info","message":"bought history query was failed","timestamp":"2016-10-16T17:58:02.741Z"}
-{"level":"info","message":"inside cart page get method!","timestamp":"2016-10-16T17:58:12.597Z"}
-{"level":"info","message":"inside /getCart post method!","timestamp":"2016-10-16T17:58:12.756Z"}
-{"level":"info","message":"select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='44'","timestamp":"2016-10-16T17:58:12.758Z"}
-{"level":"info","message":"getcart query was failed","timestamp":"2016-10-16T17:58:12.761Z"}
-{"level":"info","message":"inside /getCart post method!","timestamp":"2016-10-16T17:58:56.159Z"}
-{"level":"info","message":"select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='44'","timestamp":"2016-10-16T17:58:56.176Z"}
-{"level":"info","message":"getcart query was failed","timestamp":"2016-10-16T17:58:56.195Z"}
-{"level":"info","message":"inside cart page get method!","timestamp":"2016-10-16T18:00:34.059Z"}
-{"level":"info","message":"inside /home post method!","timestamp":"2016-10-16T18:00:34.420Z"}
-{"level":"info","message":"inside /getCart post method!","timestamp":"2016-10-16T18:00:34.426Z"}
-{"level":"info","message":"select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='44'","timestamp":"2016-10-16T18:00:34.428Z"}
+{"level":"info","message":"INSERT INTO bids SET `user_id` = 45, `user` = 'ankit', `item` = 'Diamond', `price` = NULL, `item_id` = 37\t","timestamp":"2016-10-17T04:04:27.264Z"}
+{"level":"info","message":"inside /bid post","timestamp":"2016-10-17T04:04:27.540Z"}
+{"level":"info","message":"INSERT INTO bids SET `user_id` = 45, `user` = 'ankit', `item` = 'Diamond', `price` = NULL, `item_id` = 37\t","timestamp":"2016-10-17T04:04:27.546Z"}
+{"level":"info","message":"inside /bid post","timestamp":"2016-10-17T04:05:32.920Z"}
+{"level":"info","message":"INSERT INTO bids SET `user_id` = 45, `user` = 'ankit', `item` = 'Diamond', `price` = NULL, `item_id` = 37\t","timestamp":"2016-10-17T04:05:32.935Z"}
+{"level":"info","message":"inside /bid post","timestamp":"2016-10-17T04:05:32.944Z"}
+{"level":"info","message":"INSERT INTO bids SET `user_id` = 45, `user` = 'ankit', `item` = 'Diamond', `price` = NULL, `item_id` = 37\t","timestamp":"2016-10-17T04:05:32.947Z"}
+{"level":"info","message":"inside /item get","timestamp":"2016-10-17T04:05:36.980Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-17T04:05:37.873Z"}
+{"level":"info","message":"inside /item post","timestamp":"2016-10-17T04:05:37.894Z"}
+{"level":"info","message":"select * from sell where item_id='37'","timestamp":"2016-10-17T04:05:37.895Z"}
+{"level":"info","message":"item catogory is auction!","timestamp":"2016-10-17T04:05:37.902Z"}
+{"level":"info","message":"Item listing is active","timestamp":"2016-10-17T04:05:37.911Z"}
+{"level":"info","message":"inside /bid post","timestamp":"2016-10-17T04:05:43.126Z"}
+{"level":"info","message":"INSERT INTO bids SET `user_id` = 45, `user` = 'ankit', `item` = 'Diamond', `price` = NULL, `item_id` = 37\t","timestamp":"2016-10-17T04:05:43.134Z"}
+{"level":"info","message":"inside /bid post","timestamp":"2016-10-17T04:05:50.974Z"}
+{"level":"info","message":"INSERT INTO bids SET `user_id` = 45, `user` = 'ankit', `item` = 'Diamond', `price` = NULL, `item_id` = 37\t","timestamp":"2016-10-17T04:05:50.994Z"}
+{"level":"info","message":"inside /item get","timestamp":"2016-10-17T04:05:51.009Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-17T04:05:51.700Z"}
+{"level":"info","message":"inside /item post","timestamp":"2016-10-17T04:05:51.710Z"}
+{"level":"info","message":"select * from sell where item_id='37'","timestamp":"2016-10-17T04:05:51.712Z"}
+{"level":"info","message":"item catogory is auction!","timestamp":"2016-10-17T04:05:51.723Z"}
+{"level":"info","message":"Item listing is active","timestamp":"2016-10-17T04:05:51.725Z"}
+{"level":"info","message":"inside /bid post","timestamp":"2016-10-17T04:05:57.838Z"}
+{"level":"info","message":"INSERT INTO bids SET `user_id` = 45, `user` = 'ankit', `item` = 'Diamond', `price` = NULL, `item_id` = 37\t","timestamp":"2016-10-17T04:05:57.848Z"}
+{"level":"info","message":"inside /item get","timestamp":"2016-10-17T04:06:32.368Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-17T04:06:32.911Z"}
+{"level":"info","message":"inside /item post","timestamp":"2016-10-17T04:06:32.919Z"}
+{"level":"info","message":"select * from sell where item_id='37'","timestamp":"2016-10-17T04:06:32.923Z"}
+{"level":"info","message":"item catogory is auction!","timestamp":"2016-10-17T04:06:32.930Z"}
+{"level":"info","message":"Item listing is active","timestamp":"2016-10-17T04:06:32.932Z"}
+{"level":"info","message":"inside /bid post","timestamp":"2016-10-17T04:06:39.559Z"}
+{"level":"info","message":"INSERT INTO bids SET `user_id` = 45, `user` = 'ankit', `item` = 'Diamond', `price` = 1000, `item_id` = 37\t","timestamp":"2016-10-17T04:06:39.571Z"}
+{"level":"info","message":"bid inserted into bid table","timestamp":"2016-10-17T04:06:39.677Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-17T04:06:41.663Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-17T04:06:42.078Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-17T04:06:42.089Z"}
+{"level":"info","message":"select * from sell where not seller_id ='45'","timestamp":"2016-10-17T04:06:42.090Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-17T04:06:42.093Z"}
+{"level":"info","message":"inside /item get","timestamp":"2016-10-17T04:07:40.028Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-17T04:07:40.663Z"}
+{"level":"info","message":"inside /item post","timestamp":"2016-10-17T04:07:40.703Z"}
+{"level":"info","message":"select * from sell where item_id='37'","timestamp":"2016-10-17T04:07:40.715Z"}
+{"level":"info","message":"item catogory is auction!","timestamp":"2016-10-17T04:07:40.748Z"}
+{"level":"info","message":"Item listing is active","timestamp":"2016-10-17T04:07:40.756Z"}
+{"level":"info","message":"inside /bid post","timestamp":"2016-10-17T04:07:45.428Z"}
+{"level":"info","message":"INSERT INTO bids SET `user_id` = 45, `user` = 'ankit', `item` = 'Diamond', `price` = 1500, `item_id` = 37\t","timestamp":"2016-10-17T04:07:45.437Z"}
+{"level":"info","message":"bid inserted into bid table","timestamp":"2016-10-17T04:07:45.527Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-17T04:08:23.063Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-17T04:08:23.339Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-17T04:08:23.346Z"}
+{"level":"info","message":"select * from sell where not seller_id ='45'","timestamp":"2016-10-17T04:08:23.347Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-17T04:08:23.354Z"}
+{"level":"info","message":"inside /item get","timestamp":"2016-10-17T04:09:08.935Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-17T04:09:10.264Z"}
+{"level":"info","message":"inside /item post","timestamp":"2016-10-17T04:09:10.273Z"}
+{"level":"info","message":"select * from sell where item_id='32'","timestamp":"2016-10-17T04:09:10.274Z"}
+{"level":"info","message":"inside /item get","timestamp":"2016-10-17T04:10:56.153Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-17T04:10:56.674Z"}
+{"level":"info","message":"inside /item post","timestamp":"2016-10-17T04:10:56.719Z"}
+{"level":"info","message":"select * from sell where item_id='32'","timestamp":"2016-10-17T04:10:56.731Z"}
+{"level":"info","message":"inside /cart post","timestamp":"2016-10-17T04:11:08.015Z"}
+{"level":"info","message":"select * from cart where cart.id = '32' and cart.user_id = '45'","timestamp":"2016-10-17T04:11:08.023Z"}
+{"level":"info","message":"INSERT INTO cart SET `id` = 32, `item` = 'laptop', `qty` = 1, `user_id` = 45, `seller_name` = 'hardik', `seller_id` = 44\t","timestamp":"2016-10-17T04:11:08.028Z"}
+{"level":"info","message":"selected quantity was added into cart","timestamp":"2016-10-17T04:11:08.118Z"}
+{"level":"info","message":"inside cart page get method!","timestamp":"2016-10-17T04:11:08.129Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-17T04:11:08.422Z"}
+{"level":"info","message":"inside /getCart post method!","timestamp":"2016-10-17T04:11:08.430Z"}
+{"level":"info","message":"select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='45'","timestamp":"2016-10-17T04:11:08.431Z"}
+{"level":"info","message":"getcart retrival is successful","timestamp":"2016-10-17T04:11:08.437Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-17T04:11:12.411Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-17T04:11:12.737Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-17T04:11:12.744Z"}
+{"level":"info","message":"select * from sell where not seller_id ='45'","timestamp":"2016-10-17T04:11:12.746Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-17T04:11:12.749Z"}
+{"level":"info","message":"inside /item get","timestamp":"2016-10-17T04:11:14.523Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-17T04:11:14.828Z"}
+{"level":"info","message":"inside /item post","timestamp":"2016-10-17T04:11:14.834Z"}
+{"level":"info","message":"select * from sell where item_id='31'","timestamp":"2016-10-17T04:11:14.835Z"}
+{"level":"info","message":"inside /cart post","timestamp":"2016-10-17T04:11:17.489Z"}
+{"level":"info","message":"select * from cart where cart.id = '31' and cart.user_id = '45'","timestamp":"2016-10-17T04:11:17.499Z"}
+{"level":"info","message":"INSERT INTO cart SET `id` = 31, `item` = 'watch', `qty` = 5, `user_id` = 45, `seller_name` = 'hardik', `seller_id` = 44\t","timestamp":"2016-10-17T04:11:17.514Z"}
+{"level":"info","message":"selected quantity was added into cart","timestamp":"2016-10-17T04:11:17.668Z"}
+{"level":"info","message":"inside cart page get method!","timestamp":"2016-10-17T04:11:17.678Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-17T04:11:17.952Z"}
+{"level":"info","message":"inside /getCart post method!","timestamp":"2016-10-17T04:11:17.960Z"}
+{"level":"info","message":"select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='45'","timestamp":"2016-10-17T04:11:17.962Z"}
+{"level":"info","message":"getcart retrival is successful","timestamp":"2016-10-17T04:11:17.965Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-17T04:11:19.494Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-17T04:11:19.757Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-17T04:11:19.765Z"}
+{"level":"info","message":"select * from sell where not seller_id ='45'","timestamp":"2016-10-17T04:11:19.766Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-17T04:11:19.770Z"}

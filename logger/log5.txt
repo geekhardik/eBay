@@ -24,3 +24,62 @@
 {"level":"info","message":"select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='44'","timestamp":"2016-10-16T18:25:39.328Z"}
 {"level":"info","message":"getcart query was failed","timestamp":"2016-10-16T18:25:39.329Z"}
 {"level":"info","message":"inside /sell get","timestamp":"2016-10-16T18:25:41.922Z"}
+{"level":"info","message":"inside gotocheckout page post method!","timestamp":"2016-10-17T02:11:09.816Z"}
+{"level":"info","message":"inside gotocheckout page post method!","timestamp":"2016-10-17T02:11:09.831Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-17T02:11:10.171Z"}
+{"level":"info","message":"inside /getCart post method!","timestamp":"2016-10-17T02:11:10.179Z"}
+{"level":"info","message":"select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='45'","timestamp":"2016-10-17T02:11:10.181Z"}
+{"level":"info","message":"getcart query was failed","timestamp":"2016-10-17T02:11:10.182Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-17T02:11:12.917Z"}
+{"level":"info","message":"inside /getCart post method!","timestamp":"2016-10-17T02:11:12.925Z"}
+{"level":"info","message":"select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='45'","timestamp":"2016-10-17T02:11:12.926Z"}
+{"level":"info","message":"getcart query was failed","timestamp":"2016-10-17T02:11:12.927Z"}
+{"level":"info","message":"inside gotocheckout page post method!","timestamp":"2016-10-17T02:11:16.126Z"}
+{"level":"info","message":"inside gotocheckout page post method!","timestamp":"2016-10-17T02:11:16.144Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-17T02:11:16.366Z"}
+{"level":"info","message":"inside /getCart post method!","timestamp":"2016-10-17T02:11:16.375Z"}
+{"level":"info","message":"select ebay.sell.item,ebay.sell.item_id,ebay.cart.qty,ebay.sell.price,ebay.cart.seller_id from ebay.sell,ebay.users,ebay.cart where ebay.users.user_id=ebay.cart.user_id and ebay.sell.item_id = ebay.cart.id and ebay.cart.user_id ='45'","timestamp":"2016-10-17T02:11:16.376Z"}
+{"level":"info","message":"getcart query was failed","timestamp":"2016-10-17T02:11:16.378Z"}
+{"level":"info","message":"signup was successful","timestamp":"2016-10-17T02:30:22.558Z"}
+{"level":"info","message":"inside /signup_scccess post","timestamp":"2016-10-17T02:30:22.568Z"}
+{"level":"info","message":"INSERT INTO users SET `firstname` = 'keyur', `lastname` = 'golani', `username` = 'keyur12', `password` = 'e17f15bcb10784ae18faf305ce9004fa9e4c2666abbfa776bd07417ff2f43a0bbfb5b88444b60cf1dc0c01a346d7db68195ff24a02760903c9eff677205f96a7', `salt` = '960c725c532b0d27', `contact` = '4087502530', `location` = 'NY'","timestamp":"2016-10-17T02:30:22.569Z"}
+{"level":"info","message":"signup was successful","timestamp":"2016-10-17T02:30:22.632Z"}
+{"level":"info","message":"inside /afterSignIn post","timestamp":"2016-10-17T02:38:42.769Z"}
+{"level":"info","message":"select * from users where username='ankit'","timestamp":"2016-10-17T02:38:42.770Z"}
+{"level":"info","message":"signin was successful","timestamp":"2016-10-17T02:38:42.780Z"}
+{"level":"info","message":"inside /afterSignIn post","timestamp":"2016-10-17T02:38:42.790Z"}
+{"level":"info","message":"select * from users where username='ankit'","timestamp":"2016-10-17T02:38:42.796Z"}
+{"level":"info","message":"signin was failed","timestamp":"2016-10-17T02:38:42.800Z"}
+{"level":"info","message":"cataLouge is empty","timestamp":"2016-10-17T02:59:36.621Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-17T02:59:36.732Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-17T02:59:36.901Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-17T02:59:36.910Z"}
+{"level":"info","message":"select * from sell where not seller_id ='44'","timestamp":"2016-10-17T02:59:36.911Z"}
+{"level":"info","message":"cataLouge is empty","timestamp":"2016-10-17T02:59:36.912Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-17T02:59:36.986Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-17T02:59:37.198Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-17T02:59:37.208Z"}
+{"level":"info","message":"select * from sell where not seller_id ='44'","timestamp":"2016-10-17T02:59:37.209Z"}
+{"level":"info","message":"cataLouge is empty","timestamp":"2016-10-17T02:59:37.212Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-17T02:59:37.337Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-17T02:59:37.548Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-17T02:59:37.557Z"}
+{"level":"info","message":"select * from sell where not seller_id ='44'","timestamp":"2016-10-17T02:59:37.559Z"}
+{"level":"info","message":"cataLouge is empty","timestamp":"2016-10-17T02:59:37.562Z"}
+{"level":"info","message":"inside /logout post","timestamp":"2016-10-17T02:59:49.907Z"}
+{"level":"info","message":"inside /signin get","timestamp":"2016-10-17T02:59:51.014Z"}
+{"level":"info","message":"inside /afterSignIn post","timestamp":"2016-10-17T02:59:56.218Z"}
+{"level":"info","message":"select * from users where username='ankit'","timestamp":"2016-10-17T02:59:56.219Z"}
+{"level":"info","message":"signin was successful","timestamp":"2016-10-17T02:59:56.225Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-17T02:59:57.963Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-17T02:59:58.129Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-17T02:59:58.139Z"}
+{"level":"info","message":"select * from sell where not seller_id ='45'","timestamp":"2016-10-17T02:59:58.140Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-17T02:59:58.141Z"}
+{"level":"info","message":"inside /item get","timestamp":"2016-10-17T03:00:02.213Z"}
+{"level":"info","message":"inside /item post","timestamp":"2016-10-17T03:00:03.759Z"}
+{"level":"info","message":"select * from sell where item_id='32'","timestamp":"2016-10-17T03:00:03.760Z"}
+{"level":"info","message":"inside /cart post","timestamp":"2016-10-17T03:00:06.837Z"}
+{"level":"info","message":"select * from cart where cart.id = '32' and cart.user_id = '45'","timestamp":"2016-10-17T03:00:06.845Z"}
+{"level":"info","message":"INSERT INTO cart SET `id` = 32, `item` = 'laptop', `qty` = 5, `user_id` = 45, `seller_name` = 'hardik', `seller_id` = 44\t","timestamp":"2016-10-17T03:00:06.847Z"}
+{"level":"info","message":"selected quantity was added into cart","timestamp":"2016-10-17T03:00:06.940Z"}

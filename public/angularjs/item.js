@@ -7,6 +7,7 @@ app.controller('item',function($scope,$http,$window){
 	$scope.bid_desc = true;
 	$scope.bid_btn = true;
 	$scope.cart_btn = true;
+	$scope.qty_field = true;
 	
 //	$scope.validlogin = true;
 	
@@ -41,6 +42,7 @@ app.controller('item',function($scope,$http,$window){
 				$scope.bid_desc = true;
 				$scope.bid_btn = true;
 				$scope.cart_btn = false;	
+				$scope.qty_field = false;
 			}
 			}
 		}else{
@@ -89,17 +91,13 @@ app.controller('item',function($scope,$http,$window){
 	$scope.bid = function(x){	
 		
 		
-		var a = Number($scope.qty);
-		var b = Number(x.qty);
-		if(a > b){
-			alert("You have exceeded qty that seller has listed for sale!");
-		}else{			
+				
+		
 			$http({			
 				method: "POST",
 				url : '/bid',
 				data : {
 					"obj" : x,
-					"qty" : $scope.qty,
 					"bid_price" : $scope.bid_amount,
 					"check" : "bid"
 				}
@@ -117,7 +115,27 @@ app.controller('item',function($scope,$http,$window){
 				}
 			});
 		}
-	}
+	
+	
+	
+	$http({			
+		method: "POST",
+		url : '/home',
+					
+	}).success(function(data){
+		if (data.entry) {
+			
+			$scope.sign = data.entry;
+			$scope.username = data.name;	
+			
+		}else{
+			alert("somthing's wrong in callback of home.js");
+		}
+	});	
+	
+	
+	
+	
 	
 });
 	

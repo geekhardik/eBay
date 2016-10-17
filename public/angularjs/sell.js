@@ -36,7 +36,7 @@ app.controller('sell',function($scope,$http){
 				"location":$scope.location
 			}				
 		}).success(function(data){
-			if (data.statusCode == 401) {
+			if (data.statusCode === 401) {
 				alert("Pelase signin first");
 				window.location.assign("/signin");
 			}

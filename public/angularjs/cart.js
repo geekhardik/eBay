@@ -11,11 +11,32 @@ app.controller('cart',function($scope,$http){
 		if(data.cart){
 			$scope.cart_check = data.cart;
 			$scope.price = data.price;	
+			
+		
 		}else{
 			alert("somthing's wrong in callback of cart.js");
 		}
 	});	
 };
+
+
+	$scope.delet = function(x){	
+	console.log(x);
+		$http({			
+		method: "POST",
+		url : '/delet_cartitem',
+		data :{
+			"obj" : x,
+		}
+	}).success(function(data){
+		if(data.success == "200"){
+			window.location.assign('cart');		
+		}else{
+			alert("somthing's wrong in callback of cart.js");
+		}
+	});	
+};
+
 
 		$http({			
 			method: "POST",
