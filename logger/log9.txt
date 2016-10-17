@@ -1,0 +1,24 @@
+{"level":"info","message":"inside /signup get","timestamp":"2016-10-17T04:59:06.415Z"}
+{"level":"info","message":"inside /signup get","timestamp":"2016-10-17T04:59:10.925Z"}
+{"level":"info","message":"inside /signup get","timestamp":"2016-10-17T04:59:52.647Z"}
+{"level":"info","message":"inside /signup get","timestamp":"2016-10-17T05:01:06.919Z"}
+{"level":"info","message":"inside /signin get","timestamp":"2016-10-17T05:01:18.926Z"}
+{"level":"info","message":"inside /afterSignIn post","timestamp":"2016-10-17T05:01:26.545Z"}
+{"level":"info","message":"select * from users where username='hardik'","timestamp":"2016-10-17T05:01:26.548Z"}
+{"level":"info","message":"signin was successful","timestamp":"2016-10-17T05:01:26.555Z"}
+{"level":"info","message":"inside home page get method!","timestamp":"2016-10-17T05:01:28.227Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-17T05:01:28.509Z"}
+{"level":"info","message":"inside /cataLouge post","timestamp":"2016-10-17T05:01:28.516Z"}
+{"level":"info","message":"select * from sell where not seller_id ='44'","timestamp":"2016-10-17T05:01:28.517Z"}
+{"level":"info","message":"cataLouge retrival was successful","timestamp":"2016-10-17T05:01:28.521Z"}
+{"level":"info","message":"inside /profile routing get method!","timestamp":"2016-10-17T05:01:47.439Z"}
+{"level":"info","message":"inside /home post method!","timestamp":"2016-10-17T05:01:47.765Z"}
+{"level":"info","message":"inside getSold page post method!","timestamp":"2016-10-17T05:01:47.773Z"}
+{"level":"info","message":"select * from ebay.sell where seller_id= '44'","timestamp":"2016-10-17T05:01:47.774Z"}
+{"level":"info","message":"inside getuserinfo page post method!","timestamp":"2016-10-17T05:01:47.776Z"}
+{"level":"info","message":"select * from ebay.users where user_id = '44'","timestamp":"2016-10-17T05:01:47.777Z"}
+{"level":"info","message":"inside getbought page post method!","timestamp":"2016-10-17T05:01:47.778Z"}
+{"level":"info","message":"select * from ebay.order_details where user_id = '44'","timestamp":"2016-10-17T05:01:47.781Z"}
+{"level":"info","message":"selling history retrival is successful","timestamp":"2016-10-17T05:01:47.795Z"}
+{"level":"info","message":"bought history query was failed","timestamp":"2016-10-17T05:01:47.845Z"}
+{"level":"info","message":"user information retrival is successful","timestamp":"2016-10-17T05:01:47.848Z"}

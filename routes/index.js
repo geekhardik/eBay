@@ -633,7 +633,7 @@ router.post('/sell', function(req, res, next) {
 				if(req.body.price_option == "auction"){
 					logger.log('info','item catogory is auction!');
 					
-					var millisec_time = 90000;					
+					var millisec_time = 345600000;				//for 4 days!	
 					
 					setTimeout(function () {
     				console.log('timeout completed'); 

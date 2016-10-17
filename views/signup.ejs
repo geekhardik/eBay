@@ -17,25 +17,28 @@
 
 </head>
 <body ng-app="myApp" ng-controller="signupCtrl" class="container">
-	<div class="container">
+	
+	<div class="container" style="width:450px;">
+    <img src="images/ebay.png" class="img-rounded" alt="ebay" width="80" height="50" >
+  
     <div class="panel-group">
     <div class="panel panel-default">
       <div class="panel-heading">Signup</div>
       <div class="panel-body">
 	
 	<div class="row">
-	<div class="col-lg-5"></div>
-	<div class="col-lg-2">
-		<input type="text" name="firstname" ng-model="firstname" placeholder="firstname"> <br><br>
-		<input type="text" name="lastname" ng-model="lastname" placeholder="lastname"> <br><br>
-		<input type="test" name="username" ng-model="username" placeholder="username"> <br><br>
-		<input type="password" name="password" ng-model="password" placeholder="password"> <br><br>
-		<input type="number" name="contact" ng-model="contact" placeholder="contact information" required> <br><br>
-		<input type="text" name="location" ng-model="location" placeholder="Enter your location" required> <br><br>
-		<input type="submit" class="btn btn-success" ng-click="signup()" value="signup">
-		<input type="submit" class="btn btn-success" ng-click="gotosignin()" value="signin">
+	<div class="col-lg-2"></div>
+	<div class="col-lg-8">
+		<input type="text" name="firstname" class="form-control" ng-model="firstname" placeholder="firstname"> <br><br>
+		<input type="text" name="lastname" class="form-control" ng-model="lastname" placeholder="lastname"> <br><br>
+		<input type="test" name="username" class="form-control" ng-model="username" placeholder="username"> <br><br>
+		<input type="password" name="password" class="form-control" ng-model="password" placeholder="password"> <br><br>
+		<input type="number" name="contact" class="form-control" ng-model="contact" placeholder="contact information" required> <br><br>
+		<input type="text" name="location" class="form-control" ng-model="location" placeholder="Enter your location" required> <br><br>
+		<div class="col-lg-6"><input type="submit" class="btn btn-success form-control" ng-click="signup()" value="signup"></div>
+		<div class="col-lg-6"><input type="submit" class="btn btn-success form-control" ng-click="gotosignin()" value="signin"></div>
 	</div>
-	<div class="col-lg-5"></div>
+	<div class="col-lg-2"></div>
 	</div>
 	</div>
     </div>
